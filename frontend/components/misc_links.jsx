@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Monitoring = () => {
+const MiscLinks = () => {
 
-  let links = { "New Relic":"https://www.newrelic.com", "Nagios":"https://monitoring.wflops.net/nagios/"}
+  let links = {
+    "repl.it":"https://repl.it/languages/ruby",
+    "Safari Online":"http://my.safaribooksonline.com/",
+  }
 
   return (
     <div className="monitoring_links">
-      <div className="link_heading"> Monitoring </div>
+      <div className="link_heading"> Misc. Links </div>
       <ul>
         {Object.keys(links).map(function(key){
           return <li className="link"><a target="_blank" href={links[key]}>{key}</a></li>
@@ -16,4 +19,4 @@ const Monitoring = () => {
   );
 };
 
-export default Monitoring;
+export default MiscLinks;

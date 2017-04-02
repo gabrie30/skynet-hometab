@@ -1,4 +1,67 @@
 
 .monitoring_links {
-  color: pink;
+  margin: 30px;
+  float: left;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  min-height: 175px;
+}
+
+.link_heading {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color:#E90000;
+}
+
+li.link {
+  margin: 5px 3px 5px 3px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+ul, li{
+    list-style:none;
+    list-style-type:none;
+    padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link{
+  color:#34495e;
+}
+a:visited{
+  color:#34495e;
+}
+a:hover{
+  color:#c0392b;
+}
+a:focus{
+  color:#34495e;
+}
+a:active{
+  color:#c0392b;
+}
+
+.link_group {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.link_group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.title {
+  font-family: 'Audiowide', cursive;
+  text-align: center;
+  font-size: 30px;
+  color: black;
 }
