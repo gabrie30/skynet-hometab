@@ -5,7 +5,7 @@
   display: inline-block;
   *display: inline;
   zoom: 1;
-  min-height: 175px;
+  min-height: 300px;
 }
 
 .link_heading {

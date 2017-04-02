@@ -7,6 +7,8 @@ const Westfield = () => {
     "Okta - Westfield Corp":"https://westfield.okta.com/app/UserHome",
     "Okta Preview":"https://westfieldlabs.oktapreview.com/app/UserHome",
     "Pure Safety":"https://westfield.puresafety.com/",
+    "Payroll Calendar":"https://drive.google.com/a/westfield.com/file/d/0Byu2WqMaf8OheVN5dTdwdFFaYlk/view?usp=sharing",
+    "Holiday Calendar":"https://drive.google.com/a/westfield.com/file/d/0Byu2WqMaf8OhVHdyUWNuVzlCWnc/view?usp=sharing"
 
   }
 
