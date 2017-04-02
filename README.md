@@ -10,4 +10,4 @@ Chrome extension for prod-ops team
 6. Click "Load unpacked extension..." at top of page
 
 
-![alt tag](https://cloud.githubusercontent.com/assets/1512282/24584039/2a97c6e0-1714-11e7-8c11-4efb8d1e1013.png)
+![alt tag](https://cloud.githubusercontent.com/assets/1512282/24584598/221a1c26-1727-11e7-8409-fec13629aa99.png)
