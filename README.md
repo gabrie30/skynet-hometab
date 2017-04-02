@@ -1,5 +1,5 @@
 # prod_ops_chrome_tab_extension
-Chrome tab extension for prod-ops team
+Chrome extension for prod-ops team
 
 # Installation
 1. Clone the repo
