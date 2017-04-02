@@ -5,6 +5,7 @@ const MiscLinks = () => {
   let links = {
     "repl.it":"https://repl.it/languages/ruby",
     "Safari Online":"http://my.safaribooksonline.com/",
+    "localhost:3000":"localhost:3000",
   }
 
   return (
