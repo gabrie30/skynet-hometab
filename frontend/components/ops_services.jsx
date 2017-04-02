@@ -4,7 +4,7 @@ const OpsServices = () => {
 
   let links = {
     "Create":"https://create.westfield.io/",
-    "Deliver":"https://westfieldlabs.oktapreview.com/app/UserHome",
+    "Deliver":"https://deliver.westfield.io",
     "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
     "Redirect Service":"https://redis-redirect-service.uat.wflops.net/",
 
