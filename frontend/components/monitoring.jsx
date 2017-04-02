@@ -2,7 +2,12 @@ import React from 'react';
 
 const Monitoring = () => {
 
-  let links = { "New Relic":"https://www.newrelic.com", "Nagios":"https://monitoring.wflops.net/nagios/"}
+  let links = {
+    "New Relic":"https://www.newrelic.com",
+    "Nagios":"https://monitoring.wflops.net/nagios/",
+    "Internal Status Page":"https://westfieldlabsinternal.statuspage.io/#",
+    "AEM Deploy Status (vpn)":"http://aem-deploy-status.internal.wflops.net/",
+  }
 
   return (
     <div className="monitoring_links">
