@@ -123,4 +123,14 @@ a .nav-button:hover {
   font-family: 'Audiowide', cursive;
 }
 
+.footer {
+  position: absolute;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: black;
+   height: 75px;
+   width: 100%;
+}
+
 

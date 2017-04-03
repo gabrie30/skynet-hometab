@@ -9,6 +9,7 @@ import Title from './frontend/components/title.jsx'
 import Navbar from './frontend/components/navbar.jsx'
 import Footer from './frontend/components/footer.jsx'
 
+// Can add footer below
 const WFLOPS = () => {
 
   return (
