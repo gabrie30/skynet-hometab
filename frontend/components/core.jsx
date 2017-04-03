@@ -3,7 +3,6 @@ import React from 'react';
 const Core = () => {
 
   let links = {
-    "Okta":"https://westfieldlabs.okta.com/app/UserHome",
     "Heroku":"https://www.heroku.com",
     "Splunk":"https://westfieldlabs.splunkcloud.com",
     "Daux":"https://docs.wflops.net/Production_Operations",
