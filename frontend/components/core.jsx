@@ -3,6 +3,7 @@ import React from 'react';
 const Core = () => {
 
   let links = {
+    "AWS":"https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
     "Heroku":"https://www.heroku.com",
     "Splunk":"https://westfieldlabs.splunkcloud.com",
     "Daux":"https://docs.wflops.net/Production_Operations",
