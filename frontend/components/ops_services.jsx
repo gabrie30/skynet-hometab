@@ -6,7 +6,7 @@ const OpsServices = () => {
     "Create":"https://create.westfield.io/",
     "Deliver":"https://deliver.westfield.io",
     "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
-    "Redirect Service":"https://redis-redirect-service.uat.wflops.net/",
+    "Redirect Service (UAT)":"https://redis-redirect-service.uat.wflops.net/",
 
   }
 
