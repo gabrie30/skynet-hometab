@@ -4,6 +4,7 @@ const Core = () => {
 
   let links = {
     "AWS":"https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
+    "Okta":"https://westfieldlabs.okta.com/app/UserHome",
     "Heroku":"https://www.heroku.com",
     "Splunk":"https://westfieldlabs.splunkcloud.com",
     "Daux":"https://docs.wflops.net/Production_Operations",
