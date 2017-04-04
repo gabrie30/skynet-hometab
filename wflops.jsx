@@ -24,6 +24,7 @@ const WFLOPS = () => {
           <Westfield />
           <MiscLinks />
         </div>
+        <Footer />
       </div>
   )
 };

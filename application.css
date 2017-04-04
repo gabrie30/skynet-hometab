@@ -110,7 +110,7 @@ a .nav-button:hover {
   display: block;
   width: 115px;
   height: 25px;
-  background: #d8d2d2;
+  background: #eaeaea;
   padding: 10px;
   text-align: center;
   border-radius: 5px;
@@ -125,12 +125,21 @@ a .nav-button:hover {
 
 .footer {
   position: absolute;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   background-color: black;
-   height: 75px;
-   width: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #eaeaea;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.footer a {
+  color: black;
 }
 
 

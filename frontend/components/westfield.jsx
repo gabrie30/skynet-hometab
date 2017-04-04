@@ -3,7 +3,7 @@ import React from 'react';
 const Westfield = () => {
 
   let links = {
-    "Workday":"https://www.google.com",
+    "Workday":"https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
     "Okta - Westfield Corp":"https://westfield.okta.com/app/UserHome",
     "Okta Preview":"https://westfieldlabs.oktapreview.com/app/UserHome",
     "Pure Safety":"https://westfield.puresafety.com/",

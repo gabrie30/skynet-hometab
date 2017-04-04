@@ -4,6 +4,7 @@ const MiscLinks = () => {
 
   let links = {
     "repl.it":"https://repl.it/languages/ruby",
+    "regex101":"https://regex101.com/",
     "Safari Online":"http://my.safaribooksonline.com/",
     "localhost:3000":"localhost:3000",
   }
