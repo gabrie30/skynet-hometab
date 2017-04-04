@@ -7,7 +7,13 @@ Chrome extension for prod-ops team
 3. Then run `npm start` (once its finished loading you can ctrl-c out, it just has to build once) and finally `webpack --watch` (ctrl-c)
 4. Go to Chrome -> More Tools -> Extensions
 5. Check the "Developer mode" at the top of page
-6. Click "Load unpacked extension..." at top of page
+6. Click "Load unpacked extension..." at top of page and select repo
+
+# Getting latest updates
+1. `git pull` from the repo
+2. cd into the repo and run `npm start` (ctrl-c out) then `webpack --watch` (ctrl-c)
+3. Go to Chrome -> More Tools -> Extensions
+4. Find the extension and click reload
 
 
 ![alt tag](https://cloud.githubusercontent.com/assets/1512282/24592792/346092d4-17d1-11e7-98e5-af69c0c216c8.png)
