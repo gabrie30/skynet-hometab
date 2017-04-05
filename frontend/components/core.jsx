@@ -8,6 +8,7 @@ const Core = () => {
     "Heroku":"https://www.heroku.com",
     "Splunk":"https://westfieldlabs.splunkcloud.com",
     "Daux":"https://docs.wflops.net/Production_Operations",
+    "Fastly":"https://manage.fastly.com/",
   }
 
   return (
