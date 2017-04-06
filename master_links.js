@@ -35,6 +35,7 @@ export function masterLinks() {
       "Deliver (uat)":"https://deliver.uat.westfield.io",
       "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
       "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
+      "Author (gui)":"https://cms.westfieldlabs.com/dashboard.html",
     },
     "westfield":{
       "Workday":"https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
