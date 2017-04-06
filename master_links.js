@@ -22,9 +22,9 @@ export function masterLinks() {
     },
     "monitoring":{
       "Pager Duty":"https://westfieldlabs.pagerduty.com/incidents",
+      "Status Page":"https://manage.statuspage.io/login",
       "New Relic":"https://www.newrelic.com",
       "Nagios":"https://monitoring.wflops.net/nagios/",
-      "Internal Status Page":"https://westfieldlabsinternal.statuspage.io/#",
       "AEM Deploy Status (vpn)":"http://aem-deploy-status.internal.wflops.net/",
     },
     "opsServices":{
