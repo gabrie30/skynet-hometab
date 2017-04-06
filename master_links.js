@@ -30,7 +30,7 @@ export function masterLinks() {
       "Create":"https://create.westfield.io/",
       "Deliver":"https://deliver.westfield.io",
       "Create (uat)":"https://create.uat.westfield.io",
-      "Deliver (uat)":"https://deliver.uat.westfield.io"
+      "Deliver (uat)":"https://deliver.uat.westfield.io",
       "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
       "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
     },
