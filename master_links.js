@@ -5,6 +5,7 @@ export function masterLinks() {
       "Okta":"https://westfieldlabs.okta.com/app/UserHome",
       "Heroku":"https://www.heroku.com",
       "Splunk":"https://westfieldlabs.splunkcloud.com",
+      "Fastly":"https://manage.fastly.com/",
       "Daux":"https://docs.wflops.net/Production_Operations",
     },
     "github":{
