@@ -2,15 +2,16 @@
 Chrome extension for prod-ops team
 
 # Installation
-1. Clone the repo
-2. In the directory run `npm install --save webpack react react-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-es2015 webpack-dev-server lodash`
-3. Then run `npm start` (once its finished loading you can ctrl-c out, it just has to build once) and finally `webpack --watch` (ctrl-c)
-4. Go to Chrome -> More Tools -> Extensions
-5. Check the "Developer mode" at the top of page
-6. Click "Load unpacked extension..." at top of page and select repo
+1. Clone the repo locally, where you want to plugin to live
+2. If you don't have node installed, do that first `brew install node`
+3. In the directory run `npm install --save webpack react react-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-es2015 webpack-dev-server lodash`
+4. Then run `npm start` (once its finished loading you can ctrl-c out, it just has to build once) and finally `webpack --watch` (ctrl-c)
+5. Go to Chrome -> More Tools -> Extensions
+6. Check the "Developer mode" at the top of page
+7. Click "Load unpacked extension..." at top of page and select repo and select the repo
 
 # Getting latest updates
-1. `git pull` from the repo
+1. `git pull` from the repo to get the latest changes
 2. cd into the repo and run `npm start` (ctrl-c out) then `webpack --watch` (ctrl-c)
 3. Go to Chrome -> More Tools -> Extensions
 4. Find the extension and click reload
