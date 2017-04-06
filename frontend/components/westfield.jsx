@@ -1,23 +1,13 @@
 import React from 'react';
 
-const Westfield = () => {
-
-  let links = {
-    "Workday":"https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
-    "Okta - Westfield Corp":"https://westfield.okta.com/app/UserHome",
-    "Okta Preview":"https://westfieldlabs.oktapreview.com/app/UserHome",
-    "Pure Safety":"https://westfield.puresafety.com/",
-    "Payroll Calendar":"https://drive.google.com/a/westfield.com/file/d/0Byu2WqMaf8OheVN5dTdwdFFaYlk/view?usp=sharing",
-    "Holiday Calendar":"https://drive.google.com/a/westfield.com/file/d/0Byu2WqMaf8OhVHdyUWNuVzlCWnc/view?usp=sharing"
-
-  }
+const Westfield = (props) => {
 
   return (
     <div className="monitoring_links">
       <div className="link_heading"> Westfield </div>
       <ul>
-        {Object.keys(links).map(function(key){
-          return <li className="link"><a target="_blank" href={links[key]}>{key}</a></li>
+        {Object.keys(props.links).map(function(key){
+          return <li className="link"><a target="_blank" href={props.links[key]}>{key}</a></li>
         })}
       </ul>
     </div>

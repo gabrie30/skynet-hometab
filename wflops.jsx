@@ -9,20 +9,22 @@ import Title from './frontend/components/title.jsx'
 import Navbar from './frontend/components/navbar.jsx'
 import Footer from './frontend/components/footer.jsx'
 
-// Can add footer below
+var requiredLinks = require("./master_links.js");
+var links = requiredLinks.masterLinks()
+
 const WFLOPS = () => {
 
   return (
       <div>
-        <Navbar />
+        <Navbar links={links.navbar}/>
         <Title />
         <div className='link_group'>
-          <Core />
-          <OpsServices />
-          <Monitoring />
-          <Github />
-          <Westfield />
-          <MiscLinks />
+          <Core links={links.core}/>
+          <OpsServices links={links.opsServices}/>
+          <Monitoring links={links.monitoring}/>
+          <Github links={links.github}/>
+          <Westfield links={links.westfield}/>
+          <MiscLinks links={links.miscLinks}/>
         </div>
         <Footer />
       </div>

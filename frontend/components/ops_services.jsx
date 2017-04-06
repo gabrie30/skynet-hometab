@@ -1,22 +1,13 @@
 import React from 'react';
 
-const OpsServices = () => {
-
-  let links = {
-    "Create":"https://create.westfield.io/",
-    "Deliver":"https://deliver.westfield.io",
-    "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
-    "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
-    "Harmonizer":"https://harmonizer.internal.wflops.net/",
-
-  }
+const OpsServices = (props) => {
 
   return (
     <div className="monitoring_links">
       <div className="link_heading"> Ops Services </div>
       <ul>
-        {Object.keys(links).map(function(key){
-          return <li className="link"><a target="_blank" href={links[key]}>{key}</a></li>
+        {Object.keys(props.links).map(function(key){
+          return <li className="link"><a target="_blank" href={props.links[key]}>{key}</a></li>
         })}
       </ul>
     </div>
