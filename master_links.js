@@ -21,6 +21,7 @@ export function masterLinks() {
       "localhost:3000":"localhost:3000",
     },
     "monitoring":{
+      "Pager Duty":"https://westfieldlabs.pagerduty.com/incidents",
       "New Relic":"https://www.newrelic.com",
       "Nagios":"https://monitoring.wflops.net/nagios/",
       "Internal Status Page":"https://westfieldlabsinternal.statuspage.io/#",
