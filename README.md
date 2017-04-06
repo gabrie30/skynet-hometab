@@ -16,5 +16,8 @@ Chrome extension for prod-ops team
 3. Go to Chrome -> More Tools -> Extensions
 4. Find the extension and click reload
 
+# Adding Links
+If you want to add your own links, just edit the master_links.js file in the root directory.
+
 # Preview
 ![alt tag](https://cloud.githubusercontent.com/assets/1512282/24662930/6b61bbc4-190b-11e7-84d8-5245c65abc60.png)
