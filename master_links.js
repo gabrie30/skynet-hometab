@@ -30,11 +30,14 @@ export function masterLinks() {
     },
     "opsServices":{
       "Create":"https://create.westfield.io/",
+      "Jenkins":"https://test.westfield.io",
       "Deliver":"https://deliver.westfield.io",
       "Create (uat)":"https://create.uat.westfield.io",
+      "Jenkins (uat)":"https://test.uat.westfield.io",
       "Deliver (uat)":"https://deliver.uat.westfield.io",
       "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
       "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
+      "Harmonizer":"https://harmonizer.internal.wflops.net",
       "Author (gui)":"https://cms.westfieldlabs.com/dashboard.html",
     },
     "westfield":{
