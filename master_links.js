@@ -4,10 +4,10 @@ export function masterLinks() {
       "AWS":"https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
       "Okta":"https://westfieldlabs.okta.com/app/UserHome",
       "Heroku":"https://www.heroku.com",
+      "Dynect":"https://manage.dynect.net/login/",
       "Splunk":"https://westfieldlabs.splunkcloud.com",
       "Fastly":"https://manage.fastly.com/",
       "Daux":"https://docs.wflops.net/Production_Operations",
-      "Dynect":"https://manage.dynect.net/login/",
     },
     "github":{
       "Westfield Org":"https://github.com/westfield",
