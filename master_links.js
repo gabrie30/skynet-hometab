@@ -7,6 +7,7 @@ export function masterLinks() {
       "Splunk":"https://westfieldlabs.splunkcloud.com",
       "Fastly":"https://manage.fastly.com/",
       "Daux":"https://docs.wflops.net/Production_Operations",
+      "Dynect":"https://manage.dynect.net/login/",
     },
     "github":{
       "Westfield Org":"https://github.com/westfield",
