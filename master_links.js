@@ -1,10 +1,11 @@
 export function masterLinks() {
   return {
     "core":{
+      "GCP":"https://console.cloud.google.com/",
       "AWS":"https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
-      "Okta":"https://westfieldlabs.okta.com/app/UserHome",
       "Heroku":"https://www.heroku.com",
       "Dynect":"https://manage.dynect.net/login/",
+      "Okta":"https://westfieldlabs.okta.com/app/UserHome",
       "Splunk":"https://westfieldlabs.splunkcloud.com",
       "Fastly":"https://manage.fastly.com/",
       "Ops Docs":"https://ops.docs.wflops.net/",
@@ -17,15 +18,18 @@ export function masterLinks() {
       "Github Status Page":"https://status.github.com/graphs/past_day",
     },
     "miscLinks":{
+      "localhost:4000":"localhost:4000",
+      "localhost:3000":"localhost:3000",
+      "K8 proxy UI":"http://127.0.0.1:8001/ui",
       "repl.it":"https://repl.it/languages/ruby",
       "regex101":"https://regex101.com/",
       "Safari Online":"http://my.safaribooksonline.com/",
-      "localhost:3000":"localhost:3000",
+      "Gliffy": "https://www.gliffy.com/go/html5/launch"
     },
     "monitoring":{
       "Pager Duty":"https://westfieldlabs.pagerduty.com/incidents",
       "Status Page":"https://manage.statuspage.io/login",
-      "New Relic":"https://www.newrelic.com",
+      "New Relic":"https://rpm.newrelic.com/accounts/10589/applications",
       "Nagios":"https://monitoring.wflops.net/nagios/",
       "AEM Deploy Status (vpn)":"http://aem-deploy-status.internal.wflops.net/",
     },
@@ -38,11 +42,12 @@ export function masterLinks() {
       // "Deliver (uat)":"https://deliver.uat.westfield.io",
       "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
       "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
-      "Harmonizer":"https://harmonizer.internal.wflops.net",
+      "Harmonizer (vpn)":"https://harmonizer.internal.wflops.net",
       "Author (gui)":"https://cms.westfieldlabs.com/dashboard.html",
     },
     "westfield":{
       "API's":"https://api.westfield.io/swagger/1",
+      "Service Portal":"https://westfield.service-now.com/sp",
       "Workday":"https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
       "Okta - Westfield Corp":"https://westfield.okta.com/app/UserHome",
       "Okta Preview":"https://westfieldlabs.oktapreview.com/app/UserHome",
