@@ -24,7 +24,8 @@ export function masterLinks() {
       "repl.it":"https://repl.it/languages/ruby",
       "regex101":"https://regex101.com/",
       "Safari Online":"http://my.safaribooksonline.com/",
-      "Gliffy": "https://www.gliffy.com/go/html5/launch"
+      "Gliffy": "https://www.gliffy.com/go/html5/launch",
+      "Elixir Playground":"http://elixirplayground.com/",
     },
     "monitoring":{
       "Pager Duty":"https://westfieldlabs.pagerduty.com/incidents",
