@@ -11,6 +11,7 @@ export function masterLinks() {
       "Ops Docs":"https://ops.docs.wflops.net/",
     },
     "github":{
+      "WRSINC":"https://github.com/wrsinc",
       "Westfield Org":"https://github.com/westfield",
       "Operations Org":"https://github.com/westfieldoperations",
       "Sandbox Public":"https://github.com/wf-sandbox-public",
@@ -35,15 +36,16 @@ export function masterLinks() {
       "AEM Deploy Status (vpn)":"http://aem-deploy-status.internal.wflops.net/",
     },
     "opsServices":{
+      "Polaris Jenkins":"https://test.polarisdev.io/",
       "Create":"https://create.westfield.io/",
-      "Jenkins":"https://test.westfield.io",
+      "Test":"https://test.westfield.io",
       "Deliver":"https://deliver.westfield.io",
       // "Create (uat)":"https://create.uat.westfield.io",
       // "Jenkins (uat)":"https://test.uat.westfield.io",
       // "Deliver (uat)":"https://deliver.uat.westfield.io",
-      "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
-      "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
-      "Harmonizer (vpn)":"https://harmonizer.internal.wflops.net",
+      // "Pager Duty Service":"http://pagerduty-service.herokuapp.com/pagerduty",
+      // "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
+      // "Harmonizer (vpn)":"https://harmonizer.internal.wflops.net",
       "Author (gui)":"https://cms.westfieldlabs.com/dashboard.html",
     },
     "westfield":{
