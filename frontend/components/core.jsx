@@ -7,7 +7,7 @@ const Core = (props) => {
       <div className="link_heading"> Core Links </div>
       <ul>
         {Object.keys(props.links).map(function(key){
-          return <li className="link"><a target="_blank" href={props.links[key]}>{key}</a></li>
+          return <li className="link"><a href={props.links[key]}>{key}</a></li>
         })}
       </ul>
     </div>
