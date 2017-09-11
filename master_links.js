@@ -27,6 +27,7 @@ export function masterLinks() {
       "Safari Online":"http://my.safaribooksonline.com/",
       "Gliffy": "https://www.gliffy.com/go/html5/launch",
       "Elixir Playground":"http://elixirplayground.com/",
+      "White Noise":"https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
     "monitoring":{
       "Pager Duty":"https://westfieldlabs.pagerduty.com/incidents",
