@@ -1,7 +1,7 @@
 export function masterLinks() {
   return {
     "core":{
-      "GCP":"https://console.cloud.google.com/",
+      "GCP":"https://console.cloud.google.com/home/dashboard?project=poc-tier1&authuser=1",
       "AWS":"https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
       "Heroku":"https://www.heroku.com",
       "Dynect":"https://manage.dynect.net/login/",
