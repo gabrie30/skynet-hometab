@@ -30,6 +30,12 @@ export function masterLinks() {
       "White Noise":"https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
     "monitoring":{
+      "Poc Logs":"https://logs.poc.wrsops.net",
+      "Integration Logs":"https://logs.integration.wrsops.net",
+      "Staging Logs":"https://logs.staging.wrsops.net",
+      "Sandbox Logs":"https://logs.sandbox.wrsops.net",
+      "Performance Logs":"https://logs.performance.wrsops.net",
+      "Production Logs":"https://logs.production.wrsops.net",
       "Pager Duty":"https://westfieldlabs.pagerduty.com/incidents",
       "Status Page":"https://manage.statuspage.io/login",
       "New Relic":"https://rpm.newrelic.com/accounts/10589/applications",
@@ -37,7 +43,8 @@ export function masterLinks() {
       "AEM Deploy Status (vpn)":"http://aem-deploy-status.internal.wflops.net/",
     },
     "opsServices":{
-      "Polaris Jenkins":"https://test.polarisdev.io/",
+      "New Jenkins":"https://test.polarisdev.io/",
+      "Old Jenkins":"https://test.westfield.io/",
       "Create":"https://create.westfield.io/",
       "Test":"https://test.westfield.io",
       "Deliver":"https://deliver.westfield.io",
@@ -48,6 +55,12 @@ export function masterLinks() {
       // "Redirect Service (uat)":"https://redis-redirect-service.uat.wflops.net/",
       // "Harmonizer (vpn)":"https://harmonizer.internal.wflops.net",
       "Author (gui)":"https://cms.westfieldlabs.com/dashboard.html",
+      "Ops Docs":"https://ops-docs.polarisdev.io",
+      "Polaris Docs":"https://polaris-docs.polarisdev.io",
+      "Support Docs":"https://support-docs.polarisdev.io",
+      "Platform Docs":"https://platform-docs.polarisdev.io",
+      "Governance Docs":"https://governance-docs.polarisdev.io"
+
     },
     "westfield":{
       "API's":"https://api.westfield.io/swagger/1",

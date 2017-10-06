@@ -1,11 +1,14 @@
 import React from 'react';
 
 const Title = () => {
+  var imageStyle = {
+    height: "130px"
+  };
 
   return (
     <div className="title">
-      <h1>Production Operations</h1>
-      <img src="http://cityonfire.com/wp-content/uploads/2011/04/Skynet.jpg"></img>
+      <h3>Production Operations</h3>
+      <img style={imageStyle} src="http://cityonfire.com/wp-content/uploads/2011/04/Skynet.jpg"></img>
     </div>
   );
 };
