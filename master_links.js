@@ -8,7 +8,6 @@ export function masterLinks() {
       "Okta":"https://westfieldlabs.okta.com/app/UserHome",
       "Splunk":"https://westfieldlabs.splunkcloud.com",
       "Fastly":"https://manage.fastly.com/",
-      "Ops Docs":"https://ops.docs.wflops.net/",
     },
     "github":{
       "WRSINC":"https://github.com/wrsinc",
