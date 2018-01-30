@@ -41,7 +41,7 @@ export function masterLinks() {
       "Nagios": "https://monitoring.one.market/",
     },
     "opsServices": {
-      "New Jenkins": "https://test.polarisdev.io/",
+      "New Jenkins": "https://test.one.market/",
       "Old Jenkins": "https://test.westfield.io/",
       "Create": "https://create.one.market/",
       "Deliver": "https://deliver.westfield.io",
