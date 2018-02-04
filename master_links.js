@@ -65,8 +65,8 @@ export function masterLinks() {
       "Workday": "https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
       "Okta - Westfield Corp": "https://westfield.okta.com/app/UserHome",
       "Okta Preview": "https://westfieldlabs.oktapreview.com/app/UserHome",
-      "Payroll Calendar": "https://drive.google.com/a/westfield.com/file/d/0Byu2WqMaf8OheVN5dTdwdFFaYlk/view?usp=sharing",
-      "Holiday Calendar": "https://drive.google.com/a/westfield.com/file/d/0Byu2WqMaf8OhVHdyUWNuVzlCWnc/view?usp=sharing"
+      "Payroll Calendar": "https://westfieldus.app.box.com/s/901xrnmgtopeajkkflnsngk7lxyw1gve",
+      "Holiday Calendar": "https://westfieldus.app.box.com/s/35h4ytwfsovi0e23lamwrqowa9euuq7s"
     },
     "navbar": {
       "leftButton": { "jira": "https://jira.westfieldlabs.com/secure/Dashboard.jspa" },
