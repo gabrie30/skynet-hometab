@@ -5,8 +5,9 @@ export function masterLinks() {
       "AWS": "https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
       "Dynect": "https://manage.dynect.net/login/",
       "Okta": "https://westfieldlabs.okta.com/app/UserHome",
-      "Splunk": "https://westfieldlabs.splunkcloud.com",
+      // "Westfield Splunk": "https://westfieldlabs.splunkcloud.com",
       "Fastly": "https://manage.fastly.com/",
+      "ZenDesk": "https://westfieldlabs.zendesk.com/hc/en-us",
       "Labs Infra Links": "https://ops-docs.polarisdev.io/Labs/URLs/devops/#",
     },
     "github": {
@@ -26,9 +27,12 @@ export function masterLinks() {
       "Safari Online": "http://my.safaribooksonline.com/",
       "Gliffy": "https://www.gliffy.com/go/html5/launch",
       "Elixir Playground": "http://elixirplayground.com/",
+      "Golang Playground": "https://play.golang.org/",
       "White Noise": "https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
     "monitoring": {
+      "Splunk Prod": "https://logging.one.market",
+      "Splunk Preprod": "https://logging.preprod.one.market",
       // "Poc Logs": "https://logs.poc.wrsops.net",
       // "Integration Logs": "https://logs.integration.wrsops.net",
       // "Staging Logs": "https://logs.staging.wrsops.net",
@@ -44,7 +48,7 @@ export function masterLinks() {
       "New Jenkins": "https://test.one.market/",
       "Old Jenkins": "https://test.westfield.io/",
       "Create": "https://create.one.market/",
-      "Deliver": "https://deliver.westfield.io",
+      "Deliver": "https://deliver.one.market",
       // "Create (uat)":"https://create.uat.westfield.io",
       // "Jenkins (uat)":"https://test.uat.westfield.io",
       // "Deliver (uat)":"https://deliver.uat.westfield.io",
@@ -54,7 +58,7 @@ export function masterLinks() {
       "Ops Docs": "https://ops-docs.polarisdev.io",
       "Polaris Docs": "https://polaris-docs.polarisdev.io",
       "Support Docs": "https://support-docs.polarisdev.io",
-      "Platform Docs": "https://platform-docs.polarisdev.io",
+      // "Platform Docs": "https://platform-docs.polarisdev.io",
       "Governance Docs": "https://governance-docs.polarisdev.io"
 
     },
