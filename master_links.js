@@ -22,6 +22,7 @@ export function masterLinks() {
     "miscLinks": {
       "localhost:4000": "localhost:4000",
       "localhost:3000": "localhost:3000",
+      "Time Converter": "https://www.worldtimebuddy.com/?pl=1&lid=5391959,100&h=5391959",
       "K8 proxy UI": "http://127.0.0.1:8001/ui",
       "repl.it": "https://repl.it/languages/ruby",
       "regex101": "https://regex101.com/",
