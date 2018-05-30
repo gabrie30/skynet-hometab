@@ -7,7 +7,7 @@ export function masterLinks() {
       "Okta": "https://westfieldlabs.okta.com/app/UserHome",
       "Fastly": "https://manage.fastly.com/",
       "ZenDesk": "https://westfieldlabs.zendesk.com/hc/en-us",
-      "One Market Api": "https://one.market/v1/",
+      "One Market Api": "https://api.one.market/v1/",
       "Labs Kong Links": "https://ops-docs.polarisdev.io/labs/kong/urls/",
     },
     "github": {
