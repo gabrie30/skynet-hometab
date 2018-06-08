@@ -2,7 +2,6 @@ export function masterLinks() {
   return {
     "core": {
       "GCP": "https://console.cloud.google.com/home/dashboard?project=poc-tier1&authuser=0",
-      "AWS": "https://westfieldlabs.okta.com/home/amazon_aws/0oa180m5dmtrIrcDq1d8/272",
       "Dynect": "https://manage.dynect.net/login/",
       "Okta": "https://westfieldlabs.okta.com/app/UserHome",
       "Fastly": "https://manage.fastly.com/",
@@ -17,7 +16,7 @@ export function masterLinks() {
       "Operations Org": "https://github.com/westfieldoperations",
       "Sandbox Public": "https://github.com/wf-sandbox-public",
       "Sandbox Private": "https://github.com/wf-sandbox-private",
-      "Github Status Page": "https://status.github.com/graphs/past_day",
+      "Github Status Page": "https://status.github.com/messages",
     },
     "miscLinks": {
       "localhost:4000": "localhost:4000",
@@ -35,11 +34,12 @@ export function masterLinks() {
     "monitoring": {
       "Splunk Prod": "https://logging.one.market",
       "Splunk Preprod": "https://logging.preprod.one.market",
+      "All Splunk Links": "https://ops-docs.polarisdev.io/ops/splunk/overview/#splunk-master-links",
       "Pager Duty": "https://onemarket.pagerduty.com/incidents",
       "Status Page": "https://manage.statuspage.io/login",
       "New Relic": "https://rpm.newrelic.com/accounts/10589/applications",
       "Nagios": "https://monitoring.one.market/",
-      "SonarQube":"https://sonarqube.one.market/#",
+      "SonarQube": "https://sonarqube.one.market/#",
     },
     "opsServices": {
       "New Jenkins": "https://test.one.market/",
@@ -55,10 +55,7 @@ export function masterLinks() {
     "westfield": {
       "Intranet": "https://sites.google.com/onemarketnetwork.com/intranet/employee-tools?authuser=0",
       "Polaris Swagger": "https://retailerswagger.onemarketnetwork.com/",
-      "Service Portal": "https://westfield.service-now.com/sp",
       "Workday": "https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
-      "Okta - Westfield Corp": "https://westfield.okta.com/app/UserHome",
-      "Okta Preview": "https://westfieldlabs.oktapreview.com/app/UserHome",
       "Payroll Calendar": "https://westfieldus.app.box.com/s/901xrnmgtopeajkkflnsngk7lxyw1gve",
       "Holiday Calendar": "https://westfieldus.app.box.com/s/35h4ytwfsovi0e23lamwrqowa9euuq7s",
     },
