@@ -53,9 +53,9 @@ export function masterLinks() {
       "Governance Docs": "https://governance-docs.polarisdev.io",
     },
     "westfield": {
+      "Stock Price": "https://www.marketindex.com.au/asx/omn",
       "Intranet": "https://sites.google.com/onemarketnetwork.com/intranet/employee-tools?authuser=0",
       "Polaris Swagger": "https://retailerswagger.onemarketnetwork.com/",
-      "Workday": "https://sso.westfield.com/adfs/ls/idpinitiatedSignon.aspx?loginToRp=http://www.workday.com&done=http%3A%2F%2Fwww.myworkday.com%2Fwestfield%2Fd%2Finst%2F779%2453414%2Frel-task%2F2997%244086.htmld",
       "Payroll Calendar": "https://westfieldus.app.box.com/s/901xrnmgtopeajkkflnsngk7lxyw1gve",
       "Holiday Calendar": "https://westfieldus.app.box.com/s/35h4ytwfsovi0e23lamwrqowa9euuq7s",
     },
