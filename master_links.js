@@ -1,13 +1,13 @@
 export function masterLinks() {
   return {
     "core": {
-      "GCP": "https://console.cloud.google.com/home/dashboard?project=poc-tier1&authuser=0",
+      "GCP": "https://console.cloud.google.com/home/dashboard?project=poc-tier1&authuser=1",
       "Dynect": "https://manage.dynect.net/login/",
       "Okta": "https://westfieldlabs.okta.com/app/UserHome",
       "Fastly": "https://manage.fastly.com/",
       "ZenDesk": "https://westfieldlabs.zendesk.com/hc/en-us",
       "One Market Api": "https://api.one.market/v1/",
-      "Labs Kong Links": "https://ops-docs.polarisdev.io/labs/kong/urls/",
+      "Labs Kong Links": "https://ops-docs.one.market/labs/kong/urls/",
     },
     "github": {
       "WRSINC": "https://github.com/wrsinc",
@@ -34,7 +34,6 @@ export function masterLinks() {
     "monitoring": {
       "Splunk Prod": "https://logging.one.market",
       "Splunk Preprod": "https://logging.preprod.one.market",
-      "All Splunk Links": "https://ops-docs.polarisdev.io/ops/splunk/overview/#splunk-master-links",
       "Pager Duty": "https://onemarket.pagerduty.com/incidents",
       "Status Page": "https://manage.statuspage.io/login",
       "New Relic": "https://rpm.newrelic.com/accounts/10589/applications",
@@ -47,7 +46,7 @@ export function masterLinks() {
       "Legacy Jenkins": "https://legacy-ci.westfield.io",
       "Create": "https://create.one.market/",
       "Deliver": "https://deliver.one.market",
-      "Ops Docs": "https://ops-docs.polarisdev.io",
+      "Ops Docs": "https://ops-docs.one.market",
       "Polaris Docs": "https://polaris-docs.polarisdev.io",
       "Support Docs": "https://support-docs.polarisdev.io",
       "Governance Docs": "https://governance-docs.polarisdev.io",
@@ -60,7 +59,7 @@ export function masterLinks() {
       "Holiday Calendar": "https://westfieldus.app.box.com/s/35h4ytwfsovi0e23lamwrqowa9euuq7s",
     },
     "navbar": {
-      "leftButton": { "jira": "https://jira.westfieldlabs.com/secure/Dashboard.jspa" },
+      "leftButton": { "jira": "https://project.one.market" },
       "rightButton": { "gmail": "https://www.gmail.com" }
     },
   }
