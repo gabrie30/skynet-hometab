@@ -2,7 +2,7 @@ export function masterLinks() {
   return {
     "core": {
       "GCP": "https://console.cloud.google.com/home/dashboard?project=poc-tier1&authuser=1",
-      "Docs": "https://omdocs.one.market",
+      "Docs": "https://docs.one.market",
       "HackerNews": "https://news.ycombinator.com/",
       "Dynect": "https://manage.dynect.net/login/",
       "One Market Api": "https://api.one.market/v1/",
