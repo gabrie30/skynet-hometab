@@ -6,10 +6,12 @@ export function masterLinks() {
       "HackerNews": "https://news.ycombinator.com/",
       "Dynect": "https://manage.dynect.net/login/",
       "One Market Api": "https://api.one.market/v1/",
-      "Splunk Links": "https://docs.one.market/ops/ops/splunk/overview/",
+      "Splunk Links": "https://docs.one.market/ops/splunk/overview/",
     },
     "github": {
       "WRSINC": "https://github.com/wrsinc",
+      "OMN": "https://github.com/onemarketnetwork",
+      "omdeploy": "https://github.com/wrsinc/omdeploy",
       "Personal": "https://github.com/gabrie30",
       "Operations Org (preprod)": "https://github.com/westfieldoperations",
       "Westfield Org": "https://github.com/westfield",
