@@ -11,10 +11,9 @@ export function masterLinks() {
     "github": {
       "WRSINC": "https://github.com/wrsinc",
       "OMN": "https://github.com/onemarketnetwork",
-      "omdeploy": "https://github.com/wrsinc/omdeploy",
+      "omdeploy": "https://github.com/onemarketnetwork/omdeploy",
       "Personal": "https://github.com/gabrie30",
       "Operations Org (preprod)": "https://github.com/westfieldoperations",
-      "Westfield Org": "https://github.com/westfield",
       "Sandbox Public": "https://github.com/wf-sandbox-public",
       "Sandbox Private": "https://github.com/wf-sandbox-private",
       "Github Status Page": "https://status.github.com/messages",
@@ -38,12 +37,12 @@ export function masterLinks() {
       "SonarQube": "https://sonarqube.one.market/#",
     },
     "opsServices": {
+      "CircleCi": "https://circleci.com/gh/onemarketnetwork",
       "Jenkins": "https://test.one.market/",
       "Jenkins preprod": "https://test.preprod.one.market/",
       "Security Jenkins": "https://security-test.one.market/",
       "Create": "https://create.one.market/",
       "Deliver": "https://deliver.one.market",
-      "ipam": "https://ipam01.sf.omnoffice.net/dcim/sites/ops-production/"
     },
     "westfield": {
       "Stock Price": "https://www.marketindex.com.au/asx/omn",
@@ -54,7 +53,7 @@ export function masterLinks() {
       "Expensify": "https://www.expensify.com/inbox"
     },
     "navbar": {
-      "leftButton": { "jira": "https://project.one.market" },
+      "leftButton": { "jira": "https://onemarketnetwork.atlassian.net/jira/software/projects/OPS/boards/6" },
       "rightButton": { "gmail": "https://www.gmail.com" }
     },
   }
