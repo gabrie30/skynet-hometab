@@ -7,7 +7,7 @@ const Title = () => {
 
   return (
     <div className="title">
-      <h3>Production Operations</h3>
+      <h3>Unity DevOps</h3>
       <img style={imageStyle} src="http://cityonfire.com/wp-content/uploads/2011/04/Skynet.jpg"></img>
     </div>
   );

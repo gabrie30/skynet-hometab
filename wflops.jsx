@@ -1,6 +1,6 @@
 import React from 'react';
 import Monitoring from './frontend/components/monitoring.jsx'
-import Westfield from './frontend/components/westfield.jsx'
+import Organization from './frontend/components/organization.jsx'
 import Core from './frontend/components/core.jsx'
 import Github from './frontend/components/github.jsx'
 import MiscLinks from './frontend/components/misc_links.jsx'
@@ -23,7 +23,7 @@ const WFLOPS = () => {
           <OpsServices links={links.opsServices}/>
           <Monitoring links={links.monitoring}/>
           <Github links={links.github}/>
-          <Westfield links={links.westfield}/>
+          <Organization links={links.organization}/>
           <MiscLinks links={links.miscLinks}/>
         </div>
         <Footer />

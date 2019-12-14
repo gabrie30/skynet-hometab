@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Westfield = (props) => {
+const Organization = (props) => {
 
   return (
     <div className="monitoring_links">
-      <div className="link_heading"> OneMarket </div>
+      <div className="link_heading"> Unity </div>
       <ul>
         {Object.keys(props.links).map(function (key) {
           return <li className="link"><a href={props.links[key]}>{key}</a></li>
@@ -14,4 +14,4 @@ const Westfield = (props) => {
   );
 };
 
-export default Westfield;
+export default Organization;

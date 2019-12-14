@@ -8,9 +8,8 @@ export function masterLinks() {
       "Okta": "https://unity.okta.com/app/UserHome",
       "Scholar": "https://scholar.internal.unity3d.com/my-learning/ongoing",
       "Confluence": "https://confluence.unity3d.com/index.action#all-updates",
-
     },
-    "scm": {
+    "github": {
       "Unity-Technologies": "https://github.com/Unity-Technologies",
       "Unity Tech": "https://github.com/UnityTech",
       "Applifier": "https://github.com/Applifier",
@@ -28,12 +27,12 @@ export function masterLinks() {
       "Golang Playground": "https://play.golang.org/",
       "White Noise": "https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
-    "Noteable Repos": {
+    "monitoring": {
       "DevOps Tools": "https://gitlab.internal.unity3d.com/ads/ads-devops-tools",
       "Terraform GKE Workspace": "https://gitlab.internal.unity3d.com/ads/terraform-gke-workspace",
       "Jenkins Test Repo": "https://github.com/Applifier/jenkins-testing",
     },
-    "devopsServices": {
+    "opsServices": {
       "Jenkins": "https://jenkins.prd.mz.internal.unity3d.com/",
       "Jenkins Staging": "https://jenkins.stg.mz.internal.unity3d.com/",
       "Jenkins Shared Libs": "https://github.com/Applifier/jenkins-shared-libs",
@@ -42,10 +41,10 @@ export function masterLinks() {
       "Ads GKE Asia Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts-ape2",
 
     },
-    "company": {
+    "organization": {
       "Workday": "https://www.myworkday.com/unitytech/d/home.htmld",
       "OrgChart": "http://orgchart.hq.unity3d.com/",
-      "terminology": "https://docs.google.com/document/d/1wvsiDIDZleV-oSgxeUYVLvvXt-zRV2ub0YUKbavVI8k/edit#heading=h.z5n5oaesboui",
+      "Terminology": "https://docs.google.com/document/d/1wvsiDIDZleV-oSgxeUYVLvvXt-zRV2ub0YUKbavVI8k/edit#heading=h.z5n5oaesboui",
       "LinkedIn Learning": "https://www.linkedin.com/learning/me?u=2120532",
     },
     "navbar": {
