@@ -7,8 +7,8 @@ const Title = () => {
 
   return (
     <div className="title">
-      <h3>Unity DevOps</h3>
-      <img style={imageStyle} src="http://cityonfire.com/wp-content/uploads/2011/04/Skynet.jpg"></img>
+    <br />
+      <img style={imageStyle} src="http://10minbasics.com/wp-content/uploads/2016/01/unity_ads_logo.png"></img>
     </div>
   );
 };

@@ -2,7 +2,7 @@ export function masterLinks() {
   return {
     "core": {
       "GCP": "https://console.cloud.google.com/home/dashboard?project=unity-ads-gke-stg",
-      "Terraform": "",
+      "Terraform": "https://ptfe.internal.unity3d.com/",
       "Inventory": "https://inventory.internal.unity3d.com/home",
       "Graphana": "https://grafana.internal.unity3d.com/?orgId=1",
       "Okta": "https://unity.okta.com/app/UserHome",
@@ -28,18 +28,20 @@ export function masterLinks() {
       "White Noise": "https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
     "monitoring": {
-      "DevOps Tools": "https://gitlab.internal.unity3d.com/ads/ads-devops-tools",
-      "Terraform GKE Workspace": "https://gitlab.internal.unity3d.com/ads/terraform-gke-workspace",
+      "hello-jenkis-ci": "https://github.com/Applifier/hello-jenkins-ci",
+      "hello-gitlab-ci": "https://gitlab.internal.unity3d.com/ads/hello-gitlab-ci",
       "Jenkins Test Repo": "https://github.com/Applifier/jenkins-testing",
     },
     "opsServices": {
       "Jenkins": "https://jenkins.prd.mz.internal.unity3d.com/",
       "Jenkins Staging": "https://jenkins.stg.mz.internal.unity3d.com/",
+      "DevOps Tools": "https://gitlab.internal.unity3d.com/ads/ads-devops-tools",
+      "Redis Module": "https://gitlab.internal.unity3d.com/ads/terraform-google-redis/",
       "Jenkins Shared Libs": "https://github.com/Applifier/jenkins-shared-libs",
       "Common Charts": "https://gitlab.internal.unity3d.com/unimatrix/unity-common-chart",
       "Ads GKE Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts/",
       "Ads GKE Asia Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts-ape2",
-
+      "Terraform GKE Workspace": "https://gitlab.internal.unity3d.com/ads/terraform-gke-workspace",
     },
     "organization": {
       "Workday": "https://www.myworkday.com/unitytech/d/home.htmld",
