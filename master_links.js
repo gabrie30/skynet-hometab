@@ -1,22 +1,23 @@
 export function masterLinks() {
   return {
     "core": {
-      "GCP": "https://console.cloud.google.com/home/dashboard?project=poc-tier1&authuser=1",
-      "Docs": "https://docs.one.market",
-      "HackerNews": "https://news.ycombinator.com/",
-      "Dynect": "https://manage.dynect.net/login/",
-      "One Market Api": "https://api.one.market/v1/",
-      "Splunk Links": "https://docs.one.market/ops/splunk/overview/",
+      "GCP": "https://console.cloud.google.com/home/dashboard?project=unity-ads-gke-stg",
+      "Terraform": "",
+      "Inventory": "https://inventory.internal.unity3d.com/home",
+      "Graphana": "https://grafana.internal.unity3d.com/?orgId=1",
+      "Okta": "https://unity.okta.com/app/UserHome",
+      "Scholar": "https://scholar.internal.unity3d.com/my-learning/ongoing",
+      "Confluence": "https://confluence.unity3d.com/index.action#all-updates",
+
     },
-    "github": {
-      "WRSINC": "https://github.com/wrsinc",
-      "OMN": "https://github.com/onemarketnetwork",
-      "omdeploy": "https://github.com/onemarketnetwork/omdeploy",
+    "scm": {
+      "Unity-Technologies": "https://github.com/Unity-Technologies",
+      "Unity Tech": "https://github.com/UnityTech",
+      "Applifier": "https://github.com/Applifier",
+      "GitLab": "https://gitlab.internal.unity3d.com/",
       "Personal": "https://github.com/gabrie30",
-      "Operations Org (preprod)": "https://github.com/westfieldoperations",
-      "Sandbox Public": "https://github.com/wf-sandbox-public",
-      "Sandbox Private": "https://github.com/wf-sandbox-private",
-      "Github Status Page": "https://status.github.com/messages",
+      "GitHub Status Page": "https://status.github.com/messages",
+      "GitLab Status Page": "https://status.gitlab.com/",
     },
     "miscLinks": {
       "localhost:3000": "localhost:3000",
@@ -27,33 +28,28 @@ export function masterLinks() {
       "Golang Playground": "https://play.golang.org/",
       "White Noise": "https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
-    "monitoring": {
-      "Splunk Prod": "https://logging.one.market",
-      "Splunk Preprod": "https://logging.preprod.one.market",
-      "Pager Duty": "https://onemarket.pagerduty.com/incidents",
-      "Status Page": "https://manage.statuspage.io/login",
-      "New Relic": "https://rpm.newrelic.com/accounts/10589/applications",
-      "Nagios": "https://monitoring.one.market/",
-      "SonarQube": "https://sonarqube.one.market/#",
+    "Noteable Repos": {
+      "DevOps Tools": "https://gitlab.internal.unity3d.com/ads/ads-devops-tools",
+      "Terraform GKE Workspace": "https://gitlab.internal.unity3d.com/ads/terraform-gke-workspace",
+      "Jenkins Test Repo": "https://github.com/Applifier/jenkins-testing",
     },
-    "opsServices": {
-      "CircleCi": "https://circleci.com/gh/onemarketnetwork",
-      "Jenkins": "https://test.one.market/",
-      "Jenkins preprod": "https://test.preprod.one.market/",
-      "Security Jenkins": "https://security-test.one.market/",
-      "Create": "https://create.one.market/",
-      "Deliver": "https://deliver.one.market",
+    "devopsServices": {
+      "Jenkins": "https://jenkins.prd.mz.internal.unity3d.com/",
+      "Jenkins Staging": "https://jenkins.stg.mz.internal.unity3d.com/",
+      "Jenkins Shared Libs": "https://github.com/Applifier/jenkins-shared-libs",
+      "Common Charts": "https://gitlab.internal.unity3d.com/unimatrix/unity-common-chart",
+      "Ads GKE Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts/",
+      "Ads GKE Asia Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts-ape2",
+
     },
-    "westfield": {
-      "Stock Price": "https://www.marketindex.com.au/asx/omn",
-      "Intranet": "https://sites.google.com/onemarketnetwork.com/intranet/employee-tools?authuser=0",
-      "Polaris Swagger": "https://retailerswagger.onemarketnetwork.com/",
-      "ADP Workforce Now": "https://workforcenow.adp.com/workforcenow/login.html",
-      "ADP Pay": "https://my.adp.com",
-      "Expensify": "https://www.expensify.com/inbox"
+    "company": {
+      "Workday": "https://www.myworkday.com/unitytech/d/home.htmld",
+      "OrgChart": "http://orgchart.hq.unity3d.com/",
+      "terminology": "https://docs.google.com/document/d/1wvsiDIDZleV-oSgxeUYVLvvXt-zRV2ub0YUKbavVI8k/edit#heading=h.z5n5oaesboui",
+      "LinkedIn Learning": "https://www.linkedin.com/learning/me?u=2120532",
     },
     "navbar": {
-      "leftButton": { "jira": "https://onemarketnetwork.atlassian.net/jira/software/projects/OPS/boards/6" },
+      "leftButton": { "jira": "https://jira.unity3d.com/secure/RapidBoard.jspa?rapidView=2096&projectKey=UADO" },
       "rightButton": { "gmail": "https://www.gmail.com" }
     },
   }
