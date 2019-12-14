@@ -25,6 +25,7 @@ export function masterLinks() {
       "regex101": "https://regex101.com/",
       "Safari Online": "http://my.safaribooksonline.com/",
       "Golang Playground": "https://play.golang.org/",
+      "Git Help": "https://github.com/k88hudson/git-flight-rules",
       "White Noise": "https://www.youtube.com/watch?v=wzjWIxXBs_s",
     },
     "monitoring": {
