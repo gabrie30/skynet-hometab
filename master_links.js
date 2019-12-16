@@ -11,6 +11,7 @@ export function masterLinks() {
       "Vault UI": "https://vault.corp.unity3d.com/ui/vault/secrets",
       "Unity Ads Docs": "https://github.com/Applifier/unity-ads-documentation/",
       "Unity GCP Docs": "https://confluence.unity3d.com/pages/viewpage.action?spaceKey=GCPS&title=Getting+Started+with+the+Google+Cloud+Platform",
+      "Jenkins Pipeline Docs": "https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/",
     },
     "github": {
       "Unity-Technologies": "https://github.com/Unity-Technologies",
@@ -49,7 +50,6 @@ export function masterLinks() {
       "DevOps Tools Repo": "https://gitlab.internal.unity3d.com/ads/ads-devops-tools",
       "Redis module Repo": "https://gitlab.internal.unity3d.com/ads/terraform-google-redis/",
       "Ads Common Terraform Repo": "https://gitlab.internal.unity3d.com/ads-cd/ads-common-terraform-pipeline",
-
       "Terraform GKE Workspace": "https://gitlab.internal.unity3d.com/ads/terraform-gke-workspace",
     },
     "organization": {
