@@ -34,6 +34,7 @@ export function masterLinks() {
     },
     "monitoring": {
       "Common Charts": "https://gitlab.internal.unity3d.com/unimatrix/unity-common-chart",
+      "Vault Secrets Fetcher": "https://gitlab.internal.unity3d.com/engineering-productivity/vault-secret-fetcher",
       "Ads GKE Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts/",
       "Ads GKE Asia Charts": "https://gitlab.internal.unity3d.com/ads/ads-shared-gke-charts-ape2",
       "hello-jenkis-ci": "https://github.com/Applifier/hello-jenkins-ci",
