@@ -8,6 +8,7 @@ export function masterLinks() {
       "Okta": "https://unity.okta.com/app/UserHome",
       "Scholar": "https://scholar.internal.unity3d.com/my-learning/ongoing",
       "Confluence": "https://confluence.unity3d.com/index.action#all-updates",
+      "Consul": "http://consul.prd.data.corp.unity3d.com/ui/us-central1-a/services",
       "Vault UI": "https://vault.corp.unity3d.com/ui/vault/secrets",
       "Unity Ads Docs": "https://github.com/Applifier/unity-ads-documentation/",
       "Unity GCP Docs": "https://confluence.unity3d.com/pages/viewpage.action?spaceKey=GCPS&title=Getting+Started+with+the+Google+Cloud+Platform",
