@@ -16,7 +16,7 @@ Chrome extension for prod-ops team
 3. Go to Chrome -> More Tools -> Extensions
 4. Find the extension and click reload
 
-# Intstalling from zip
+# Installing from zip
 1. If you already have the extension running, just replace the old folder with the new one and reload in chrome. If not follow instructions below.
 1. Unzip in the directory you want the plugin to live
 2. Click the three vertical dots in the upper right hand corner of Chrome (plugin does not work on any other browser)
