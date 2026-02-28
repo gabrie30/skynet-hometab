@@ -129,8 +129,16 @@ const App = () => {
 
   const todoVisible = showTodo || todos.length > 0;
 
+  const getCurrentAppData = () => {
+    if (!editing || !editConfig) return appData;
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, config: editConfig } : p,
+    );
+    return { ...appData, profiles };
+  };
+
   const handleExport = () => {
-    exportConfig(appData);
+    exportConfig(getCurrentAppData());
   };
 
   const handleImport = async () => {
@@ -150,8 +158,9 @@ const App = () => {
     const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope):');
     if (!token) return;
     try {
+      const dataToBackup = getCurrentAppData();
       const existingGistId = await loadGistId();
-      const { id, url } = await backupToGist(token, appData, existingGistId);
+      const { id, url } = await backupToGist(token, dataToBackup, existingGistId);
       await saveGistId(id);
       alert(`Backup saved!\n${url}`);
     } catch (err) {
