@@ -101,8 +101,8 @@ export async function loadOrSeedConfig() {
   return appData;
 }
 
-export function exportConfig(config) {
-  const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+export function exportConfig(appData) {
+  const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -111,6 +111,10 @@ export function exportConfig(config) {
   URL.revokeObjectURL(url);
 }
 
+/**
+ * Accepts both the full envelope format ({ profiles, activeProfileId })
+ * and the legacy single-profile format ({ columns, navbar, dropdowns }).
+ */
 export function importConfig() {
   return new Promise((resolve, reject) => {
     const input = document.createElement('input');
@@ -123,11 +127,21 @@ export function importConfig() {
       const reader = new FileReader();
       reader.onload = (ev) => {
         try {
-          const config = JSON.parse(ev.target.result);
-          if (!config.columns || !config.navbar || !config.dropdowns) {
-            return reject(new Error('Invalid config format'));
+          const data = JSON.parse(ev.target.result);
+
+          if (data.profiles && Array.isArray(data.profiles) && data.activeProfileId) {
+            return resolve(data);
           }
-          resolve(config);
+
+          if (data.columns && data.navbar && data.dropdowns) {
+            const id = nextProfileId();
+            return resolve({
+              activeProfileId: id,
+              profiles: [{ id, name: 'Imported', config: data }],
+            });
+          }
+
+          reject(new Error('Invalid config format'));
         } catch {
           reject(new Error('Invalid JSON'));
         }
@@ -135,5 +149,32 @@ export function importConfig() {
       reader.readAsText(file);
     };
     input.click();
+  });
+}
+
+// --- Gist ID persistence ---
+
+const GIST_ID_KEY = 'chrometab_gist_id';
+
+export function saveGistId(gistId) {
+  const storage = getChromeStorage();
+  if (!storage) {
+    localStorage.setItem(GIST_ID_KEY, gistId);
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    storage.set({ [GIST_ID_KEY]: gistId }, resolve);
+  });
+}
+
+export function loadGistId() {
+  const storage = getChromeStorage();
+  if (!storage) {
+    return Promise.resolve(localStorage.getItem(GIST_ID_KEY));
+  }
+  return new Promise((resolve) => {
+    storage.get(GIST_ID_KEY, (result) => {
+      resolve(result[GIST_ID_KEY] || null);
+    });
   });
 }

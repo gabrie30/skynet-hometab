@@ -6,8 +6,8 @@ import ProfileSwitcher from './components/ProfileSwitcher';
 import LinkColumn from './components/LinkColumn';
 import TodoList from './components/TodoList';
 import Footer from './components/Footer';
-import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig } from './storage';
-import { getDefaultLinks } from './defaultLinks';
+import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId } from './storage';
+import { backupToGist, restoreFromGist } from './gist';
 import './styles.css';
 
 let idCounter = Date.now();
@@ -108,17 +108,6 @@ const App = () => {
     setEditing(false);
   };
 
-  const handleResetDefaults = async () => {
-    if (!window.confirm('Replace all links with the built-in defaults? Your customizations will be lost.')) {
-      return;
-    }
-    const defaults = getDefaultLinks();
-    const updated = updateActiveProfileConfig(defaults);
-    await saveConfig(updated);
-    setEditConfig(null);
-    setEditing(false);
-  };
-
   // --- Todo list ---
 
   const todos = appData?.todos || [];
@@ -141,20 +130,52 @@ const App = () => {
   const todoVisible = showTodo || todos.length > 0;
 
   const handleExport = () => {
-    exportConfig(editing ? editConfig : activeProfile.config);
+    exportConfig(appData);
   };
 
   const handleImport = async () => {
+    if (!window.confirm('Import will replace ALL profiles. Continue?')) return;
     try {
       const imported = await importConfig();
-      if (editing) {
-        setEditConfig(imported);
-      } else {
-        const updated = updateActiveProfileConfig(imported);
-        await saveConfig(updated);
-      }
+      setAppData(imported);
+      await saveConfig(imported);
+      setEditConfig(null);
+      setEditing(false);
     } catch (err) {
       alert(`Import failed: ${err.message}`);
+    }
+  };
+
+  const handleBackup = async () => {
+    const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope):');
+    if (!token) return;
+    try {
+      const existingGistId = await loadGistId();
+      const { id, url } = await backupToGist(token, appData, existingGistId);
+      await saveGistId(id);
+      alert(`Backup saved!\n${url}`);
+    } catch (err) {
+      alert(`Backup failed: ${err.message}`);
+    }
+  };
+
+  const handleRestore = async () => {
+    const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope):');
+    if (!token) return;
+    try {
+      const gistId = await loadGistId();
+      if (!gistId) {
+        alert('No backup found. Back up your config first.');
+        return;
+      }
+      if (!window.confirm('Restore will replace ALL profiles with the backup. Continue?')) return;
+      const restored = await restoreFromGist(token, gistId);
+      setAppData(restored);
+      await saveConfig(restored);
+      setEditConfig(null);
+      setEditing(false);
+    } catch (err) {
+      alert(`Restore failed: ${err.message}`);
     }
   };
 
@@ -278,9 +299,10 @@ const App = () => {
         onToggleEdit={handleToggleEdit}
         onSave={handleSave}
         onCancel={handleCancel}
-        onResetDefaults={handleResetDefaults}
         onExport={handleExport}
         onImport={handleImport}
+        onBackup={handleBackup}
+        onRestore={handleRestore}
         todoVisible={todoVisible}
         onStartTodo={() => setShowTodo(true)}
         profileSwitcher={
