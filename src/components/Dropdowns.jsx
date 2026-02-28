@@ -9,7 +9,7 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
   const listDragCounter = useRef({});
 
   const handleNavigate = (dropdown, value) => {
-    if (value) window.location = value;
+    if (value) window.open(value, '_blank');
   };
 
   const buildUrl = (template, item) => template.replace('{item}', item);
@@ -194,8 +194,8 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
             <select
               key={dd.id}
               className="dropdown-select"
+              value=""
               onChange={(e) => handleNavigate(dd, e.target.value)}
-              defaultValue=""
             >
               <option value="">{dd.heading}</option>
               {dd.items.map((item, j) => (
