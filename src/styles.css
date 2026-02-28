@@ -1,0 +1,768 @@
+/* ========================================
+   Base
+   ======================================== */
+
+body {
+  margin: 0;
+}
+
+/* ========================================
+   Navbar
+   ======================================== */
+
+.navbar {
+  position: relative;
+  background-color: black;
+  height: 75px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 7%;
+}
+
+.nav-button-left,
+.nav-button-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button {
+  display: block;
+  width: 115px;
+  height: 25px;
+  background: #eaeaea;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-family: 'Audiowide', cursive;
+}
+
+.nav-button:hover {
+  background-color: white;
+}
+
+.nav-edit-group {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-edit-input {
+  padding: 4px 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #222;
+  color: #eaeaea;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  width: 120px;
+}
+
+/* ========================================
+   Profile Switcher (footer popover)
+   ======================================== */
+
+.profile-footer-container {
+  position: relative;
+}
+
+.profile-toggle-btn {
+  white-space: nowrap;
+}
+
+.profile-popover {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  padding: 6px 0;
+  z-index: 200;
+}
+
+.profile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.profile-list-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #34495e;
+}
+
+.profile-list-btn:hover {
+  background: #f0f0f0;
+}
+
+.profile-list-btn-active {
+  font-weight: bold;
+  color: #c0392b;
+}
+
+.profile-list-delete {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.profile-list-delete:hover:not(:disabled) {
+  color: #c0392b;
+}
+
+.profile-list-delete:disabled {
+  color: #eee;
+  cursor: default;
+}
+
+.profile-popover-actions {
+  border-top: 1px solid #eee;
+  padding: 6px 10px 4px;
+  margin-top: 4px;
+}
+
+.profile-popover-input-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-popover-input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-popover-confirm,
+.profile-popover-cancel {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.profile-popover-confirm {
+  color: #27ae60;
+}
+
+.profile-popover-cancel {
+  color: #c0392b;
+}
+
+.profile-popover-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.profile-popover-action {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  padding: 3px 8px;
+  background: #34495e;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.profile-popover-action:hover {
+  background: #2c3e50;
+}
+
+.footer-divider {
+  color: #ccc;
+  font-size: 14px;
+  margin: 0 2px;
+  user-select: none;
+}
+
+/* ========================================
+   Title
+   ======================================== */
+
+.title {
+  font-family: 'Audiowide', cursive;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+}
+
+.title-edit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.title-edit-input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 360px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #666;
+}
+
+/* ========================================
+   Dropdowns
+   ======================================== */
+
+.custom-select {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dropdown-select {
+  width: 200px;
+  border: 1px solid #0000003d;
+  color: #00000080;
+  overflow: hidden;
+  padding: 3px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-indent: 40px;
+}
+
+.dropdown-select:focus {
+  border-color: gray;
+  outline: none;
+}
+
+.dropdowns-edit {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  padding: 0 40px;
+}
+
+.dropdown-edit-group {
+  background: #f8f8f8;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  min-width: 220px;
+  max-width: 300px;
+}
+
+.dropdown-edit-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.dropdown-template-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.template-label {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.template-input {
+  flex: 1;
+}
+
+.dropdown-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+
+.add-dropdown-row {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ========================================
+   Link columns
+   ======================================== */
+
+.link_group {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.link_group::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.monitoring_links {
+  margin: 30px;
+  float: left;
+  display: inline-block;
+  zoom: 1;
+  min-height: 200px;
+}
+
+.link_heading {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #E90000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+li.link {
+  margin: 5px 3px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+}
+
+ul, li {
+  list-style: none;
+  list-style-type: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited,
+a:focus {
+  color: #34495e;
+}
+
+a:hover,
+a:active {
+  color: #c0392b;
+}
+
+/* ========================================
+   Edit mode controls
+   ======================================== */
+
+.edit-heading-input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #E90000;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: #fff;
+  width: 160px;
+}
+
+.edit-link-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- Drag handles ---- */
+
+.drag-handle {
+  cursor: grab;
+  color: #bbb;
+  font-size: 14px;
+  user-select: none;
+  letter-spacing: 1px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.drag-handle:hover {
+  color: #666;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.drag-handle--link {
+  font-size: 12px;
+}
+
+/* ---- Drag visual feedback ---- */
+
+.link_heading--draggable {
+  cursor: grab;
+}
+
+.link_heading--draggable:active {
+  cursor: grabbing;
+}
+
+.link--dragging {
+  opacity: 0.3;
+}
+
+.link--drop-target {
+  border-top: 2px solid #3498db;
+}
+
+.column-drag-over {
+  outline: 2px dashed #3498db;
+  outline-offset: -2px;
+  border-radius: 6px;
+  background: #f0f7ff;
+}
+
+.link-list-drag-over {
+  min-height: 30px;
+}
+
+.dropdown-group--dragging {
+  opacity: 0.3;
+}
+
+.remove-link-btn,
+.remove-column-btn {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.remove-link-btn:hover,
+.remove-column-btn:hover {
+  color: #e74c3c;
+}
+
+.remove-column-btn {
+  font-size: 20px;
+}
+
+.add-link-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #ddd;
+}
+
+.add-link-input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 160px;
+  box-sizing: border-box;
+}
+
+.add-link-btn,
+.add-column-btn {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  padding: 4px 12px;
+  background: #34495e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.add-link-btn:hover,
+.add-column-btn:hover {
+  background: #2c3e50;
+}
+
+.add-column-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  min-width: 180px;
+  min-height: 200px;
+  background: #fafafa;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #eaeaea;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Source Sans Pro', sans-serif;
+  z-index: 100;
+}
+
+.footer a {
+  color: black;
+}
+
+.footer-editing {
+  gap: 10px;
+}
+
+.footer-edit-btn {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  text-transform: lowercase;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+}
+
+.footer-edit-btn:hover {
+  color: #c0392b;
+}
+
+.footer-btn {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #219a52;
+}
+
+.cancel-btn {
+  background: #95a5a6;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #7f8c8d;
+}
+
+.reset-btn {
+  background: #e67e22;
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #d35400;
+}
+
+.export-btn {
+  background: #2980b9;
+  color: white;
+}
+
+.export-btn:hover {
+  background: #2472a4;
+}
+
+.import-btn {
+  background: #8e44ad;
+  color: white;
+}
+
+.import-btn:hover {
+  background: #7d3c98;
+}
+
+/* ========================================
+   Todo List
+   ======================================== */
+
+.todo-list {
+  max-width: 480px;
+  margin: 30px auto 0;
+}
+
+.todo-heading {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #E90000;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo-minimize-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.todo-minimize-btn:hover {
+  color: #999;
+}
+
+.todo-input-row {
+  display: flex;
+  gap: 6px;
+}
+
+.todo-input {
+  flex: 1;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.todo-add-btn {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width: 34px;
+  height: 34px;
+  background: #34495e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.todo-add-btn:hover {
+  background: #2c3e50;
+}
+
+.todo-items {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-check {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.todo-check:hover {
+  border-color: #27ae60;
+  background: #27ae60;
+}
+
+.todo-check:hover .todo-check-icon::after {
+  content: '\2713';
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.todo-text {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  color: #34495e;
+}
+
+/* Space at bottom so content doesn't hide behind fixed footer */
+body {
+  padding-bottom: 60px;
+}
