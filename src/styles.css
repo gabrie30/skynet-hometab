@@ -408,6 +408,17 @@ a:active {
   display: flex;
   align-items: center;
   gap: 6px;
+  width: 100%;
+}
+
+.edit-link-name-input {
+  flex: 1;
+  min-width: 60px;
+}
+
+.edit-link-url-input {
+  flex: 2;
+  min-width: 80px;
 }
 
 /* ---- Drag handles ---- */

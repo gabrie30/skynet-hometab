@@ -44,6 +44,13 @@ const LinkColumn = ({
     onUpdate({ ...column, heading: e.target.value });
   };
 
+  const handleLinkEdit = (index, field, value) => {
+    const links = column.links.map((link, i) =>
+      i === index ? { ...link, [field]: value } : link,
+    );
+    onUpdate({ ...column, links });
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') handleAddLink();
   };
@@ -235,7 +242,20 @@ const LinkColumn = ({
             {editing ? (
               <span className="edit-link-row">
                 <span className="drag-handle drag-handle--link" title="Drag to reorder">⠿</span>
-                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.name}</a>
+                <input
+                  type="text"
+                  className="add-link-input edit-link-name-input"
+                  value={link.name}
+                  onChange={(e) => handleLinkEdit(index, 'name', e.target.value)}
+                  title="Link name"
+                />
+                <input
+                  type="text"
+                  className="add-link-input edit-link-url-input"
+                  value={link.url}
+                  onChange={(e) => handleLinkEdit(index, 'url', e.target.value)}
+                  title="Link URL"
+                />
                 <button
                   className="remove-link-btn"
                   onClick={() => handleRemoveLink(index)}
