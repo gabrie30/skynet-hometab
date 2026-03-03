@@ -5,7 +5,7 @@ const STORAGE_KEY = 'chrometab_config';
 let idCounter = Date.now();
 export const nextProfileId = () => `prof_${idCounter++}`;
 
-const DEFAULT_TITLE_IMAGE = 'https://user-images.githubusercontent.com/1512282/128574386-7c64eab8-30d9-4d4b-a942-488bbbb7a6ec.jpeg';
+const DEFAULT_TITLE_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Skynet_Terminator_logo.png/330px-Skynet_Terminator_logo.png';
 
 export function getEmptyConfig() {
   return {
