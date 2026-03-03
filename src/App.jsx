@@ -6,7 +6,7 @@ import ProfileSwitcher from './components/ProfileSwitcher';
 import LinkColumn from './components/LinkColumn';
 import TodoList from './components/TodoList';
 import Footer from './components/Footer';
-import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId } from './storage';
+import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, ensurePerProfileTodos } from './storage';
 import { backupToGist, restoreFromGist } from './gist';
 import './styles.css';
 
@@ -48,6 +48,10 @@ const App = () => {
 
   const handleSwitchProfile = async (profileId) => {
     if (editing) return;
+    const targetProfile = appData.profiles.find((p) => p.id === profileId);
+    if (targetProfile && (!targetProfile.todos || targetProfile.todos.length === 0)) {
+      setShowTodo(false);
+    }
     const updated = { ...appData, activeProfileId: profileId };
     setAppData(updated);
     await saveConfig(updated);
@@ -55,7 +59,7 @@ const App = () => {
 
   const handleAddProfile = async (name) => {
     const id = nextProfileId();
-    const newProfile = { id, name, config: getEmptyConfig() };
+    const newProfile = { id, name, config: getEmptyConfig(), todos: [] };
     const updated = {
       activeProfileId: id,
       profiles: [...appData.profiles, newProfile],
@@ -108,20 +112,27 @@ const App = () => {
     setEditing(false);
   };
 
-  // --- Todo list ---
+  // --- Todo list (per profile) ---
 
-  const todos = appData?.todos || [];
+  const todos = Array.isArray(activeProfile?.todos) ? activeProfile.todos : [];
+
+  const updateActiveProfileTodos = (newTodos) => {
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, todos: newTodos } : p,
+    );
+    return { ...appData, profiles };
+  };
 
   const handleAddTodo = async (text) => {
     const todo = { id: `todo_${Date.now()}`, text };
-    const updated = { ...appData, todos: [...todos, todo] };
+    const updated = updateActiveProfileTodos([...todos, todo]);
     setAppData(updated);
     await saveConfig(updated);
   };
 
   const handleRemoveTodo = async (id) => {
     const remaining = todos.filter((t) => t.id !== id);
-    const updated = { ...appData, todos: remaining };
+    const updated = updateActiveProfileTodos(remaining);
     setAppData(updated);
     await saveConfig(updated);
     if (remaining.length === 0) setShowTodo(false);
@@ -145,8 +156,9 @@ const App = () => {
     if (!window.confirm('Import will replace ALL profiles. Continue?')) return;
     try {
       const imported = await importConfig();
-      setAppData(imported);
-      await saveConfig(imported);
+      const normalized = ensurePerProfileTodos(imported);
+      setAppData(normalized);
+      await saveConfig(normalized);
       setEditConfig(null);
       setEditing(false);
     } catch (err) {

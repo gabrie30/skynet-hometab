@@ -33,6 +33,18 @@ function ensureTitleImage(config) {
   return config;
 }
 
+/**
+ * Ensures each profile has a todos array (for import/normalization).
+ */
+export function ensurePerProfileTodos(data) {
+  if (!data || !data.profiles || !Array.isArray(data.profiles)) return data;
+  const profiles = data.profiles.map((p) => ({
+    ...p,
+    todos: Array.isArray(p.todos) ? p.todos : [],
+  }));
+  return { ...data, profiles };
+}
+
 function migrateIfNeeded(data) {
   if (!data) return null;
 
@@ -40,6 +52,7 @@ function migrateIfNeeded(data) {
     const profiles = data.profiles.map((p) => ({
       ...p,
       config: ensureTitleImage(p.config),
+      todos: Array.isArray(p.todos) ? p.todos : [],
     }));
     return { ...data, profiles };
   }
