@@ -134,13 +134,30 @@ const ProfileSwitcher = ({
           )}
         </div>
       )}
-      <button
-        className="footer-edit-btn profile-toggle-btn"
-        onClick={() => setOpen(!open)}
-        title="Switch profile"
-      >
-        {activeProfile?.name || 'Profile'}
-      </button>
+      <div className="profile-footer-inline">
+        {profiles.map((p) => (
+          <button
+            key={p.id}
+            type="button"
+            className={`profile-pill${p.id === activeProfileId ? ' profile-pill-active' : ''}`}
+            onClick={() => handleSelect(p.id)}
+            title={`Switch to ${p.name}`}
+          >
+            {p.name}
+          </button>
+        ))}
+        {editing && (
+          <button
+            type="button"
+            className="footer-edit-btn profile-manage-btn"
+            onClick={() => setOpen(!open)}
+            title="Manage profiles"
+            aria-label="Manage profiles"
+          >
+            manage
+          </button>
+        )}
+      </div>
     </div>
   );
 };

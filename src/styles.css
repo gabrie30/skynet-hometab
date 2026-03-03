@@ -74,8 +74,40 @@ body {
   position: relative;
 }
 
-.profile-toggle-btn {
+.profile-footer-inline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.profile-pill {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background: #eaeaea;
+  color: #999;
+  cursor: pointer;
   white-space: nowrap;
+}
+
+.profile-pill:hover {
+  background-color: white;
+}
+
+.profile-pill-active {
+  background-color: white;
+  color: #999;
+}
+
+.profile-pill-active:hover {
+  background-color: white;
+}
+
+.profile-manage-btn {
+  margin-left: 4px;
 }
 
 .profile-popover {
