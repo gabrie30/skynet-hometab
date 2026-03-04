@@ -28,11 +28,28 @@ const TabSetSelector = ({ tabSets }) => {
   }, []);
 
   const handleSelectSet = (set) => {
-    if (set && Array.isArray(set.urls)) {
-      set.urls.forEach((link) => {
-        const url = toAbsoluteUrl(link.url);
-        if (url) window.open(url, '_blank');
+    if (!set || !Array.isArray(set.urls)) {
+      setOpen(false);
+      return;
+    }
+    const urls = set.urls
+      .map((link) => toAbsoluteUrl(link.url))
+      .filter(Boolean);
+    if (urls.length === 0) {
+      setOpen(false);
+      return;
+    }
+
+    const canCloseCurrentTab =
+      typeof chrome !== 'undefined' && chrome.tabs && chrome.tabs.getCurrent;
+
+    if (canCloseCurrentTab) {
+      urls.forEach((url) => chrome.tabs.create({ url }));
+      chrome.tabs.getCurrent((tab) => {
+        if (tab && tab.id != null) chrome.tabs.remove(tab.id);
       });
+    } else {
+      urls.forEach((url) => window.open(url, '_blank'));
     }
     setOpen(false);
   };

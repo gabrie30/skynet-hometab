@@ -6,7 +6,7 @@
   "chrome_url_overrides": {
     "newtab": "dist/index.html"
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs"],
   "icons": {
     "128": "skynet2.png"
   }
