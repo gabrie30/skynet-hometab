@@ -1,4 +1,5 @@
 import React from 'react';
+import TabSetSelector from './TabSetSelector';
 
 const Footer = ({
   editing,
@@ -12,6 +13,7 @@ const Footer = ({
   profileSwitcher,
   todoVisible,
   onStartTodo,
+  tabSets,
 }) => {
   if (editing) {
     return (
@@ -29,6 +31,9 @@ const Footer = ({
     );
   }
 
+  const tabSetList = Array.isArray(tabSets) ? tabSets : [];
+  const hasTabSets = tabSetList.length > 0;
+
   return (
     <div className="footer">
       {profileSwitcher}
@@ -42,6 +47,12 @@ const Footer = ({
           <button className="footer-edit-btn" onClick={onStartTodo}>
             todo
           </button>
+        </>
+      )}
+      {hasTabSets && (
+        <>
+          <span className="footer-divider">|</span>
+          <TabSetSelector tabSets={tabSetList} />
         </>
       )}
     </div>

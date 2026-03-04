@@ -12,6 +12,7 @@ export function getEmptyConfig() {
     columns: [],
     navbar: { left: { name: '', url: '' }, right: { name: '', url: '' } },
     dropdowns: [],
+    tabSets: [],
     titleImage: '',
   };
 }
@@ -34,6 +35,16 @@ function ensureTitleImage(config) {
 }
 
 /**
+ * Ensures config has a tabSets array (for migration/import).
+ */
+function ensureTabSets(config) {
+  if (config && !Array.isArray(config.tabSets)) {
+    return { ...config, tabSets: [] };
+  }
+  return config;
+}
+
+/**
  * Ensures each profile has a todos array (for import/normalization).
  */
 export function ensurePerProfileTodos(data) {
@@ -51,7 +62,7 @@ function migrateIfNeeded(data) {
   if (data.profiles && Array.isArray(data.profiles)) {
     const profiles = data.profiles.map((p) => ({
       ...p,
-      config: ensureTitleImage(p.config),
+      config: ensureTabSets(ensureTitleImage(p.config)),
       todos: Array.isArray(p.todos) ? p.todos : [],
     }));
     return { ...data, profiles };
@@ -61,7 +72,7 @@ function migrateIfNeeded(data) {
     const id = nextProfileId();
     return {
       activeProfileId: id,
-      profiles: [{ id, name: 'Default', config: ensureTitleImage(data) }],
+      profiles: [{ id, name: 'Default', config: ensureTabSets(ensureTitleImage(data)) }],
     };
   }
 

@@ -74,6 +74,10 @@ body {
   position: relative;
 }
 
+.tabset-footer-container {
+  position: relative;
+}
+
 .profile-footer-inline {
   display: flex;
   align-items: center;
@@ -356,6 +360,28 @@ body {
   margin-top: 10px;
 }
 
+.tabset-edit-wrapper {
+  margin-top: 10px;
+  padding: 0 40px;
+}
+
+.tabset-edit {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.tabset-edit-heading {
+  width: 100%;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 6px;
+}
+
 /* ========================================
    Link columns
    ======================================== */
@@ -605,6 +631,29 @@ a:active {
 
 .footer-editing {
   gap: 10px;
+}
+
+.footer-tabset-label {
+  font-size: 14px;
+  color: #666;
+  margin-right: 4px;
+}
+
+.footer-tabset-select {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.footer-tabset-select:focus {
+  outline: none;
+  border-color: #999;
 }
 
 .footer-edit-btn {

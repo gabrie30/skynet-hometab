@@ -5,6 +5,7 @@ import Dropdowns from './components/Dropdowns';
 import ProfileSwitcher from './components/ProfileSwitcher';
 import LinkColumn from './components/LinkColumn';
 import TodoList from './components/TodoList';
+import TabSetsEdit from './components/TabSetsEdit';
 import Footer from './components/Footer';
 import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, ensurePerProfileTodos } from './storage';
 import { backupToGist, restoreFromGist } from './gist';
@@ -261,6 +262,18 @@ const App = () => {
     setEditConfig({ ...editConfig, dropdowns });
   };
 
+  const handleTabSetsUpdate = (tabSets) => {
+    setEditConfig({ ...editConfig, tabSets });
+  };
+
+  const handleAddTabSet = () => {
+    const tabSets = [
+      ...(activeConfig.tabSets || []),
+      { id: nextId(), name: 'New set', urls: [] },
+    ];
+    setEditConfig({ ...editConfig, tabSets });
+  };
+
   if (loading || !activeConfig) return null;
 
   return (
@@ -284,6 +297,21 @@ const App = () => {
         <div className="add-dropdown-row">
           <button className="add-column-btn" onClick={handleAddDropdown}>
             + Add Dropdown
+          </button>
+        </div>
+      )}
+      {editing && (activeConfig.tabSets || []).length > 0 && (
+        <div className="tabset-edit-wrapper">
+          <TabSetsEdit
+            tabSets={activeConfig.tabSets}
+            onUpdate={handleTabSetsUpdate}
+          />
+        </div>
+      )}
+      {editing && (
+        <div className="add-dropdown-row">
+          <button className="add-column-btn" onClick={handleAddTabSet}>
+            + Add Tab Set
           </button>
         </div>
       )}
@@ -326,6 +354,7 @@ const App = () => {
         onRestore={handleRestore}
         todoVisible={todoVisible}
         onStartTodo={() => setShowTodo(true)}
+        tabSets={activeConfig.tabSets}
         profileSwitcher={
           <ProfileSwitcher
             profiles={appData.profiles}

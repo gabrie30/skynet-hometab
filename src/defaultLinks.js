@@ -138,5 +138,6 @@ export function getDefaultLinks() {
         ],
       },
     ],
+    tabSets: [],
   };
 }
