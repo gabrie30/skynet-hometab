@@ -19,13 +19,13 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
 
   /**
    * Builds a URL from a template and a value string (single or comma-separated).
-   * Placeholders: {part} / {part1} = first, {part2} = second, etc. {item}/{item1} supported for backward compat.
+   * Placeholders: {part} / {part1} = first, {part2} = second, etc.
    * Example: template "https://{part1}.com/user/{part2}/{part3}", value "github,chrometab,main"
    *          → "https://github.com/user/chrometab/main"
    */
   const buildUrl = (template, valueString) => {
     const parts = valueString.split(',').map((s) => s.trim()).filter(Boolean);
-    return template.replace(/\{(part|item)(\d*)\}/gi, (match, _name, num) => {
+    return template.replace(/\{part(\d*)\}/gi, (match, num) => {
       const index = num ? parseInt(num, 10) - 1 : 0;
       return parts[index] ?? '';
     });
