@@ -7,7 +7,7 @@ import LinkColumn from './components/LinkColumn';
 import TodoList from './components/TodoList';
 import TabSetsEdit from './components/TabSetsEdit';
 import Footer from './components/Footer';
-import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, ensurePerProfileTodos, ensureDropdownItems } from './storage';
+import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, saveGithubToken, loadGithubToken, ensurePerProfileTodos, ensureDropdownItems } from './storage';
 import { backupToGist, restoreFromGist } from './gist';
 import './styles.css';
 
@@ -20,12 +20,17 @@ const App = () => {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [showTodo, setShowTodo] = useState(false);
+  const [hasGistToken, setHasGistToken] = useState(false);
 
   useEffect(() => {
     loadOrSeedConfig().then((loaded) => {
       setAppData(loaded);
       setLoading(false);
     });
+  }, []);
+
+  useEffect(() => {
+    loadGithubToken().then((t) => setHasGistToken(!!t));
   }, []);
 
   const getActiveProfile = (data) => {
@@ -106,6 +111,17 @@ const App = () => {
     await saveConfig(updated);
     setEditConfig(null);
     setEditing(false);
+
+    const token = await loadGithubToken();
+    if (token) {
+      try {
+        const existingGistId = await loadGistId();
+        const { id } = await backupToGist(token, updated, existingGistId);
+        await saveGistId(id);
+      } catch (err) {
+        alert(`Auto-sync to Gist failed: ${err.message}`);
+      }
+    }
   };
 
   const handleCancel = () => {
@@ -208,6 +224,22 @@ const App = () => {
     } catch (err) {
       alert(`Restore failed: ${err.message}`);
     }
+  };
+
+  const handleSetGistToken = async () => {
+    const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope). It will be stored and used to auto-push config to a Gist when you click Save.');
+    if (!token) return;
+    const trimmed = token.trim();
+    if (!trimmed) return;
+    await saveGithubToken(trimmed);
+    setHasGistToken(true);
+    alert('GitHub token saved. Your config will be pushed to a Gist automatically each time you click Save.');
+  };
+
+  const handleClearGistToken = async () => {
+    if (!window.confirm('Remove saved GitHub token? Auto-sync to Gist will be disabled.')) return;
+    await saveGithubToken(null);
+    setHasGistToken(false);
   };
 
   // --- Column / Navbar / Dropdown handlers ---
@@ -361,6 +393,9 @@ const App = () => {
         onImport={handleImport}
         onBackup={handleBackup}
         onRestore={handleRestore}
+        hasGistToken={hasGistToken}
+        onSetGistToken={handleSetGistToken}
+        onClearGistToken={handleClearGistToken}
         todoVisible={todoVisible}
         onStartTodo={() => setShowTodo(true)}
         tabSets={activeConfig.tabSets}

@@ -10,6 +10,9 @@ const Footer = ({
   onImport,
   onBackup,
   onRestore,
+  hasGistToken,
+  onSetGistToken,
+  onClearGistToken,
   profileSwitcher,
   todoVisible,
   onStartTodo,
@@ -27,6 +30,15 @@ const Footer = ({
         <span className="footer-divider">|</span>
         <button className="footer-btn export-btn" onClick={onBackup}>GitHub Export</button>
         <button className="footer-btn import-btn" onClick={onRestore}>GitHub Import</button>
+        <span className="footer-divider">|</span>
+        {hasGistToken ? (
+          <>
+            <span className="footer-gist-status">Auto-sync to Gist: on</span>
+            <button className="footer-btn import-btn" onClick={onClearGistToken}>Clear GitHub Token</button>
+          </>
+        ) : (
+          <button className="footer-btn export-btn" onClick={onSetGistToken}>Set GitHub Token (auto-sync on Save)</button>
+        )}
       </div>
     );
   }

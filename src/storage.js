@@ -200,6 +200,36 @@ export function importConfig() {
 
 const GIST_ID_KEY = 'chrometab_gist_id';
 
+// --- GitHub token (for auto-sync to Gist on save) ---
+
+const GITHUB_TOKEN_KEY = 'chrometab_github_token';
+
+export function saveGithubToken(token) {
+  const storage = getChromeStorage();
+  const value = token ? String(token).trim() : null;
+  if (!storage) {
+    if (value) localStorage.setItem(GITHUB_TOKEN_KEY, value);
+    else localStorage.removeItem(GITHUB_TOKEN_KEY);
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    if (value) storage.set({ [GITHUB_TOKEN_KEY]: value }, resolve);
+    else storage.remove(GITHUB_TOKEN_KEY, resolve);
+  });
+}
+
+export function loadGithubToken() {
+  const storage = getChromeStorage();
+  if (!storage) {
+    return Promise.resolve(localStorage.getItem(GITHUB_TOKEN_KEY));
+  }
+  return new Promise((resolve) => {
+    storage.get(GITHUB_TOKEN_KEY, (result) => {
+      resolve(result[GITHUB_TOKEN_KEY] || null);
+    });
+  });
+}
+
 export function saveGistId(gistId) {
   const storage = getChromeStorage();
   if (!storage) {

@@ -250,6 +250,13 @@ body {
   user-select: none;
 }
 
+.footer-gist-status {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  color: #27ae60;
+  margin-right: 6px;
+}
+
 /* ========================================
    Title
    ======================================== */
