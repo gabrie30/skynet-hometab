@@ -31,6 +31,13 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
     });
   };
 
+  /** URL for an item: use value as-is if it starts with https://, otherwise apply template. */
+  const getItemUrl = (urlTemplate, item) => {
+    const value = getItemValue(item).trim();
+    if (value.toLowerCase().startsWith('https://')) return value;
+    return buildUrl(urlTemplate, value);
+  };
+
   const handleRemoveItem = (dropdownIndex, itemIndex) => {
     const updated = dropdowns.map((dd, i) => {
       if (i !== dropdownIndex) return dd;
@@ -220,7 +227,7 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
             >
               <option value="">{dd.heading}</option>
               {dd.items.map((item, j) => (
-                <option key={j} value={buildUrl(dd.urlTemplate, getItemValue(item))}>
+                <option key={j} value={getItemUrl(dd.urlTemplate, item)}>
                   {getItemLabel(item)}
                 </option>
               ))}
@@ -317,12 +324,12 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
           <div className="add-link-form add-link-form--dropdown">
             <input
               type="text"
-              placeholder="Value (comma-separated: part1, part2, part3)"
+              placeholder="Value or https://... (full URL skips template)"
               value={newItemValues[i] || ''}
               onChange={(e) => setNewItemValues({ ...newItemValues, [i]: e.target.value })}
               onKeyDown={(e) => handleKeyDown(e, i)}
               className="add-link-input"
-              title="Values substituted into {part1}, {part2}, {part3} in the URL template"
+              title="Comma-separated parts for the template, or a full URL starting with https:// to use as the link directly"
             />
             <input
               type="text"

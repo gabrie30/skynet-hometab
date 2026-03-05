@@ -6,7 +6,7 @@
  *   columns: array of { id, heading, links: [{ name, url }] }
  *   navbar:  { left: { name, url }, right: { name, url } }
  *   dropdowns: array of { id, heading, urlTemplate, items: Array<{ value, label? }> }
- *     urlTemplate uses {part}, {part1}, {part2}, ...; value is comma-separated parts; label is optional display text
+ *     urlTemplate uses {part}, {part1}, {part2}, ...; value is comma-separated parts or a full URL (https://... uses value as link); label is optional
  *   titleImage: string (URL for the logo displayed below the navbar)
  */
 export function getDefaultLinks() {

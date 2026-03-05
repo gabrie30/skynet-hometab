@@ -47,11 +47,13 @@ Click the **edit** text in the footer to enter edit mode. From there you can:
 
 Dropdowns are link menus built from a **URL template** and a list of **items**. Each item has a **value** (used in the URL) and an optional **label** (shown in the menu).
 
-- **URL template** — Use placeholders `{part}`, `{part1}`, `{part2}`, `{part3}`, etc. The value for each item can be a single value or comma-separated parts that map to part1, part2, part3, and so on.
-- **Value** — The string substituted into the template. For one placeholder use a single value (e.g. `ec2`). For multiple placeholders use comma-separated values (e.g. `github,chrometab,main`).
+- **URL template** — Use placeholders `{part}`, `{part1}`, `{part2}`, `{part3}`, etc. The value for each item can be a single value or comma-separated parts that map to part1, part2, part3, and so on. *Ignored for items whose value is a full URL (see Value).*
+- **Value** — The string substituted into the template: a single value (e.g. `ec2`), comma-separated parts (e.g. `github,chrometab,main`), or a **full URL**. If the value starts with `https://`, it is used as the link directly and the URL template is not applied. Use this to mix template-based entries with fixed links in the same dropdown.
 - **Label** — Optional. If set, this is the text shown in the dropdown; if empty, the value is shown. Handy when the value is something like `github,chrometab,main` and you want the menu to show “chrometab (main)” instead.
 
-**Example:** To open a specific GitHub repo branch, set the URL template to `https://github.com/{part1}/{part2}/tree/{part3}` and add an item with value `your-org,repo-name,main` and label `repo-name (main)`.
+**Example (template):** Set the URL template to `https://github.com/{part1}/{part2}/tree/{part3}` and add an item with value `your-org,repo-name,main` and label `repo-name (main)`.
+
+**Example (direct URL):** Add an item with value `https://example.com/special-page` and label `Special page`; the template is ignored and that URL is used as the link.
 
 ## Sharing your config
 
