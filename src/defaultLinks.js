@@ -5,7 +5,8 @@
  * Structure:
  *   columns: array of { id, heading, links: [{ name, url }] }
  *   navbar:  { left: { name, url }, right: { name, url } }
- *   dropdowns: array of { id, heading, urlTemplate, items: string[] }
+ *   dropdowns: array of { id, heading, urlTemplate, items: Array<{ value, label? }> }
+ *     urlTemplate uses {part}, {part1}, {part2}, ...; value is comma-separated parts; label is optional display text
  *   titleImage: string (URL for the logo displayed below the navbar)
  */
 export function getDefaultLinks() {
@@ -102,7 +103,7 @@ export function getDefaultLinks() {
       {
         id: 'awsServices',
         heading: 'AWS Services',
-        urlTemplate: 'https://console.aws.amazon.com/{item}/home',
+        urlTemplate: 'https://console.aws.amazon.com/{part}/home',
         items: [
           'ec2',
           's3',
@@ -123,7 +124,7 @@ export function getDefaultLinks() {
       {
         id: 'githubRepos',
         heading: 'Popular Repos',
-        urlTemplate: 'https://github.com/{item}',
+        urlTemplate: 'https://github.com/{part}',
         items: [
           'facebook/react',
           'vercel/next.js',

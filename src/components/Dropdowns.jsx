@@ -1,7 +1,12 @@
 import React, { useState, useRef } from 'react';
 
+/** Normalize item to { value, label? }; accept legacy string. */
+const getItemValue = (item) => (typeof item === 'string' ? item : item.value);
+const getItemLabel = (item) => (typeof item === 'string' ? item : (item.label ?? item.value));
+
 const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
-  const [newItems, setNewItems] = useState({});
+  const [newItemValues, setNewItemValues] = useState({});
+  const [newItemLabels, setNewItemLabels] = useState({});
   const [dragItemInfo, setDragItemInfo] = useState(null);
   const [dropTargetItem, setDropTargetItem] = useState(null);
   const [dragDropdownId, setDragDropdownId] = useState(null);
@@ -12,7 +17,19 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
     if (value) window.open(value, '_blank');
   };
 
-  const buildUrl = (template, item) => template.replace('{item}', item);
+  /**
+   * Builds a URL from a template and a value string (single or comma-separated).
+   * Placeholders: {part} / {part1} = first, {part2} = second, etc. {item}/{item1} supported for backward compat.
+   * Example: template "https://{part1}.com/user/{part2}/{part3}", value "github,chrometab,main"
+   *          → "https://github.com/user/chrometab/main"
+   */
+  const buildUrl = (template, valueString) => {
+    const parts = valueString.split(',').map((s) => s.trim()).filter(Boolean);
+    return template.replace(/\{(part|item)(\d*)\}/gi, (match, _name, num) => {
+      const index = num ? parseInt(num, 10) - 1 : 0;
+      return parts[index] ?? '';
+    });
+  };
 
   const handleRemoveItem = (dropdownIndex, itemIndex) => {
     const updated = dropdowns.map((dd, i) => {
@@ -23,15 +40,19 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
   };
 
   const handleAddItem = (dropdownIndex) => {
-    const value = (newItems[dropdownIndex] || '').trim();
+    const value = (newItemValues[dropdownIndex] || '').trim();
     if (!value) return;
+
+    const label = (newItemLabels[dropdownIndex] || '').trim() || undefined;
+    const newItem = { value, label };
 
     const updated = dropdowns.map((dd, i) => {
       if (i !== dropdownIndex) return dd;
-      return { ...dd, items: [...dd.items, value] };
+      return { ...dd, items: [...dd.items, newItem] };
     });
     onUpdate(updated);
-    setNewItems({ ...newItems, [dropdownIndex]: '' });
+    setNewItemValues({ ...newItemValues, [dropdownIndex]: '' });
+    setNewItemLabels({ ...newItemLabels, [dropdownIndex]: '' });
   };
 
   const handleHeadingChange = (dropdownIndex, value) => {
@@ -199,8 +220,8 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
             >
               <option value="">{dd.heading}</option>
               {dd.items.map((item, j) => (
-                <option key={j} value={buildUrl(dd.urlTemplate, item)}>
-                  {item}
+                <option key={j} value={buildUrl(dd.urlTemplate, getItemValue(item))}>
+                  {getItemLabel(item)}
                 </option>
               ))}
             </select>
@@ -253,7 +274,8 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
               className="add-link-input template-input"
               value={dd.urlTemplate}
               onChange={(e) => handleTemplateChange(i, e.target.value)}
-              placeholder="https://example.com/{item}"
+              placeholder="e.g. https://{part1}.com/user/{part2}/{part3}"
+              title="Use {part} or {part1}, {part2}, {part3} with comma-separated values"
             />
           </div>
           <ul
@@ -276,10 +298,11 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
                 onDragOver={(e) => handleItemDragOver(e, i, j)}
                 onDrop={(e) => handleItemDrop(e, i, j)}
                 onDragEnd={handleItemDragEnd}
+                title={typeof item === 'object' && item.label ? getItemValue(item) : undefined}
               >
                 <span className="edit-link-row">
                   <span className="drag-handle drag-handle--link" title="Drag to reorder">⠿</span>
-                  <span>{item}</span>
+                  <span>{getItemLabel(item)}</span>
                   <button
                     className="remove-link-btn"
                     onClick={() => handleRemoveItem(i, j)}
@@ -291,14 +314,24 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
               </li>
             ))}
           </ul>
-          <div className="add-link-form">
+          <div className="add-link-form add-link-form--dropdown">
             <input
               type="text"
-              placeholder="New item"
-              value={newItems[i] || ''}
-              onChange={(e) => setNewItems({ ...newItems, [i]: e.target.value })}
+              placeholder="Value (comma-separated: part1, part2, part3)"
+              value={newItemValues[i] || ''}
+              onChange={(e) => setNewItemValues({ ...newItemValues, [i]: e.target.value })}
               onKeyDown={(e) => handleKeyDown(e, i)}
               className="add-link-input"
+              title="Values substituted into {part1}, {part2}, {part3} in the URL template"
+            />
+            <input
+              type="text"
+              placeholder="Label (optional)"
+              value={newItemLabels[i] || ''}
+              onChange={(e) => setNewItemLabels({ ...newItemLabels, [i]: e.target.value })}
+              onKeyDown={(e) => handleKeyDown(e, i)}
+              className="add-link-input add-link-input--label"
+              title="Display text in the dropdown; if empty, the value is shown"
             />
             <button className="add-link-btn" onClick={() => handleAddItem(i)}>
               + Add

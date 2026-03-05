@@ -45,6 +45,22 @@ function ensureTabSets(config) {
 }
 
 /**
+ * Normalizes dropdown items to { value, label? }[] (legacy string items become { value }).
+ */
+export function ensureDropdownItems(config) {
+  if (!config || !Array.isArray(config.dropdowns)) return config;
+  return {
+    ...config,
+    dropdowns: config.dropdowns.map((dd) => ({
+      ...dd,
+      items: (dd.items || []).map((it) =>
+        typeof it === 'string' ? { value: it } : { value: it.value, label: it.label }
+      ),
+    })),
+  };
+}
+
+/**
  * Ensures each profile has a todos array (for import/normalization).
  */
 export function ensurePerProfileTodos(data) {
@@ -62,7 +78,7 @@ function migrateIfNeeded(data) {
   if (data.profiles && Array.isArray(data.profiles)) {
     const profiles = data.profiles.map((p) => ({
       ...p,
-      config: ensureTabSets(ensureTitleImage(p.config)),
+      config: ensureDropdownItems(ensureTabSets(ensureTitleImage(p.config))),
       todos: Array.isArray(p.todos) ? p.todos : [],
     }));
     return { ...data, profiles };
@@ -72,7 +88,11 @@ function migrateIfNeeded(data) {
     const id = nextProfileId();
     return {
       activeProfileId: id,
-      profiles: [{ id, name: 'Default', config: ensureTabSets(ensureTitleImage(data)) }],
+      profiles: [{
+        id,
+        name: 'Default',
+        config: ensureDropdownItems(ensureTabSets(ensureTitleImage(data))),
+      }],
     };
   }
 

@@ -7,7 +7,7 @@ import LinkColumn from './components/LinkColumn';
 import TodoList from './components/TodoList';
 import TabSetsEdit from './components/TabSetsEdit';
 import Footer from './components/Footer';
-import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, ensurePerProfileTodos } from './storage';
+import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, ensurePerProfileTodos, ensureDropdownItems } from './storage';
 import { backupToGist, restoreFromGist } from './gist';
 import './styles.css';
 
@@ -157,7 +157,16 @@ const App = () => {
     if (!window.confirm('Import will replace ALL profiles. Continue?')) return;
     try {
       const imported = await importConfig();
-      const normalized = ensurePerProfileTodos(imported);
+      let normalized = ensurePerProfileTodos(imported);
+      if (normalized?.profiles) {
+        normalized = {
+          ...normalized,
+          profiles: normalized.profiles.map((p) => ({
+            ...p,
+            config: ensureDropdownItems(p.config) ?? p.config,
+          })),
+        };
+      }
       setAppData(normalized);
       await saveConfig(normalized);
       setEditConfig(null);
@@ -257,7 +266,7 @@ const App = () => {
   const handleAddDropdown = () => {
     const dropdowns = [
       ...activeConfig.dropdowns,
-      { id: nextId(), heading: 'New Dropdown', urlTemplate: 'https://example.com/{item}', items: [] },
+      { id: nextId(), heading: 'New Dropdown', urlTemplate: 'https://example.com/{part}', items: [] },
     ];
     setEditConfig({ ...editConfig, dropdowns });
   };
