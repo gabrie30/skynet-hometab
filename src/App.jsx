@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Title from './components/Title';
 import Dropdowns from './components/Dropdowns';
@@ -7,7 +7,7 @@ import LinkColumn from './components/LinkColumn';
 import TodoList from './components/TodoList';
 import TabSetsEdit from './components/TabSetsEdit';
 import Footer from './components/Footer';
-import { loadOrSeedConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, saveGithubToken, loadGithubToken, ensurePerProfileTodos, ensureDropdownItems } from './storage';
+import { loadOrSeedConfig, loadConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, saveGithubToken, loadGithubToken, ensurePerProfileTodos, ensureDropdownItems } from './storage';
 import { backupToGist, restoreFromGist } from './gist';
 import './styles.css';
 
@@ -21,6 +21,8 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [showTodo, setShowTodo] = useState(false);
   const [hasGistToken, setHasGistToken] = useState(false);
+  const appDataRef = useRef(null);
+  appDataRef.current = appData;
 
   useEffect(() => {
     loadOrSeedConfig().then((loaded) => {
@@ -32,6 +34,18 @@ const App = () => {
   useEffect(() => {
     loadGithubToken().then((t) => setHasGistToken(!!t));
   }, []);
+
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState !== 'visible' || editing) return;
+      if (appDataRef.current == null) return;
+      loadConfig().then((loaded) => {
+        if (loaded) setAppData(loaded);
+      });
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, [editing]);
 
   const getActiveProfile = (data) => {
     if (!data) return null;
