@@ -11,7 +11,7 @@
  */
 export function getDefaultLinks() {
   return {
-    titleImage: '',
+    titleImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Skynet_Terminator_logo.png/330px-Skynet_Terminator_logo.png',
     columns: [
       {
         id: 'cloud',
