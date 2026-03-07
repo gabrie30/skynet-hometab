@@ -39,9 +39,8 @@ Click the **edit** text in the footer to enter edit mode. From there you can:
 - **Add a dropdown** — Click the "+ Add Dropdown" button
 - **Save** — Persist your changes
 - **Cancel** — Discard changes and return to the saved state
-- **Update to New Default** — Reset all links to the built-in defaults from `defaultLinks.js`
 - **Export** — Download your current config as `skynet-config.json`
-- **Import** — Load a config from a JSON file
+- **Import** — Load a config from a JSON file (replaces all profiles). First-time load uses built-in defaults from `defaultLinks.js`.
 
 ## Dropdowns
 
