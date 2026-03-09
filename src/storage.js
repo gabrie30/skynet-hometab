@@ -14,6 +14,7 @@ export function getEmptyConfig() {
     dropdowns: [],
     tabSets: [],
     titleImage: '',
+    openLinksInNewTab: true,
   };
 }
 
@@ -40,6 +41,16 @@ function ensureTitleImage(config) {
 function ensureTabSets(config) {
   if (config && !Array.isArray(config.tabSets)) {
     return { ...config, tabSets: [] };
+  }
+  return config;
+}
+
+/**
+ * Ensures config has openLinksInNewTab (default true for backward compatibility).
+ */
+function ensureOpenLinksInNewTab(config) {
+  if (config && !('openLinksInNewTab' in config)) {
+    return { ...config, openLinksInNewTab: true };
   }
   return config;
 }
@@ -78,7 +89,7 @@ function migrateIfNeeded(data) {
   if (data.profiles && Array.isArray(data.profiles)) {
     const profiles = data.profiles.map((p) => ({
       ...p,
-      config: ensureDropdownItems(ensureTabSets(ensureTitleImage(p.config))),
+      config: ensureOpenLinksInNewTab(ensureDropdownItems(ensureTabSets(ensureTitleImage(p.config)))),
       todos: Array.isArray(p.todos) ? p.todos : [],
     }));
     return { ...data, profiles };
@@ -91,7 +102,7 @@ function migrateIfNeeded(data) {
       profiles: [{
         id,
         name: 'Default',
-        config: ensureDropdownItems(ensureTabSets(ensureTitleImage(data))),
+        config: ensureOpenLinksInNewTab(ensureDropdownItems(ensureTabSets(ensureTitleImage(data)))),
       }],
     };
   }

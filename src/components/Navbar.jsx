@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = ({ navbar, editing, onUpdate }) => {
+const Navbar = ({ navbar, editing, onUpdate, openLinksInNewTab = true }) => {
   const handleChange = (side, field, value) => {
     onUpdate({
       ...navbar,
@@ -33,9 +33,16 @@ const Navbar = ({ navbar, editing, onUpdate }) => {
       );
     }
 
+    if (openLinksInNewTab) {
+      return (
+        <div className={className}>
+          <a className="nav-button" href={btn.url} target="_blank" rel="noopener noreferrer">{btn.name}</a>
+        </div>
+      );
+    }
     return (
       <div className={className}>
-        <a className="nav-button" href={btn.url} target="_blank" rel="noopener noreferrer">{btn.name}</a>
+        <a className="nav-button" href={btn.url} rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); window.location.href = btn.url; }}>{btn.name}</a>
       </div>
     );
   };

@@ -17,6 +17,8 @@ const Footer = ({
   todoVisible,
   onStartTodo,
   tabSets,
+  openLinksInNewTab,
+  onToggleOpenLinksInNewTab,
 }) => {
   if (editing) {
     return (
@@ -27,6 +29,19 @@ const Footer = ({
         <button className="footer-btn cancel-btn" onClick={onCancel}>Cancel</button>
         <button className="footer-btn export-btn" onClick={onExport}>Export</button>
         <button className="footer-btn import-btn" onClick={onImport}>Import</button>
+        <span className="footer-divider">|</span>
+        <button
+          type="button"
+          className="footer-edit-btn"
+          onClick={onToggleOpenLinksInNewTab}
+          title={
+            openLinksInNewTab
+              ? 'Link behavior: column links, navbar, and dropdowns open in a new tab. Click to switch to opening in the current tab instead.'
+              : 'Link behavior: column links, navbar, and dropdowns replace the current tab. Click to switch to opening in a new tab instead.'
+          }
+        >
+          {openLinksInNewTab ? 'new tab' : 'current tab'}
+        </button>
         <span className="footer-divider">|</span>
         <button className="footer-btn export-btn" onClick={onBackup}>GitHub Export</button>
         <button className="footer-btn import-btn" onClick={onRestore}>GitHub Import</button>

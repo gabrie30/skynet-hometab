@@ -37,6 +37,7 @@ Click the **edit** text in the footer to enter edit mode. From there you can:
 - **Edit navbar buttons** — In edit mode, the navbar buttons become editable text fields for label and URL
 - **Edit dropdowns** — Add/remove items, change headings, and modify URL templates (see **Dropdowns** below)
 - **Add a dropdown** — Click the "+ Add Dropdown" button
+- **Link behavior** — In the edit footer, use the **new tab** / **current tab** toggle to choose whether column links, navbar buttons, and dropdown selections open in a new tab or replace the current tab. Your choice is saved when you click Save.
 - **Save** — Persist your changes
 - **Cancel** — Discard changes and return to the saved state
 - **Export** — Download your current config as `skynet-config.json`

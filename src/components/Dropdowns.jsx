@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 const getItemValue = (item) => (typeof item === 'string' ? item : item.value);
 const getItemLabel = (item) => (typeof item === 'string' ? item : (item.label ?? item.value));
 
-const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
+const Dropdowns = ({ dropdowns, editing, onUpdate, openLinksInNewTab = true }) => {
   const [newItemValues, setNewItemValues] = useState({});
   const [newItemLabels, setNewItemLabels] = useState({});
   const [dragItemInfo, setDragItemInfo] = useState(null);
@@ -14,7 +14,12 @@ const Dropdowns = ({ dropdowns, editing, onUpdate }) => {
   const listDragCounter = useRef({});
 
   const handleNavigate = (dropdown, value) => {
-    if (value) window.open(value, '_blank');
+    if (!value) return;
+    if (openLinksInNewTab) {
+      window.open(value, '_blank');
+    } else {
+      window.location.href = value;
+    }
   };
 
   /**

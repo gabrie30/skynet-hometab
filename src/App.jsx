@@ -329,6 +329,14 @@ const App = () => {
     setEditConfig({ ...editConfig, tabSets });
   };
 
+  const openLinksInNewTab = activeConfig?.openLinksInNewTab !== false;
+
+  const handleToggleOpenLinksInNewTab = () => {
+    if (editing) {
+      setEditConfig({ ...editConfig, openLinksInNewTab: !openLinksInNewTab });
+    }
+  };
+
   if (loading || !activeConfig) return null;
 
   return (
@@ -337,6 +345,7 @@ const App = () => {
         navbar={activeConfig.navbar}
         editing={editing}
         onUpdate={handleNavbarUpdate}
+        openLinksInNewTab={openLinksInNewTab}
       />
       <Title
         imageUrl={activeConfig.titleImage}
@@ -347,6 +356,7 @@ const App = () => {
         dropdowns={activeConfig.dropdowns}
         editing={editing}
         onUpdate={handleDropdownsUpdate}
+        openLinksInNewTab={openLinksInNewTab}
       />
       {editing && (
         <div className="add-dropdown-row">
@@ -380,6 +390,7 @@ const App = () => {
             onRemove={() => handleColumnRemove(index)}
             onColumnDrop={handleColumnReorder}
             onLinkDropFromOther={handleLinkMoveBetweenColumns}
+            openLinksInNewTab={openLinksInNewTab}
           />
         ))}
         {editing && (
@@ -413,6 +424,8 @@ const App = () => {
         todoVisible={todoVisible}
         onStartTodo={() => setShowTodo(true)}
         tabSets={activeConfig.tabSets}
+        openLinksInNewTab={openLinksInNewTab}
+        onToggleOpenLinksInNewTab={handleToggleOpenLinksInNewTab}
         profileSwitcher={
           <ProfileSwitcher
             profiles={appData.profiles}

@@ -9,6 +9,7 @@ const LinkColumn = ({
   onColumnDragOver,
   onColumnDrop,
   onLinkDropFromOther,
+  openLinksInNewTab = true,
 }) => {
   const [newName, setNewName] = useState('');
   const [newUrl, setNewUrl] = useState('');
@@ -264,8 +265,10 @@ const LinkColumn = ({
                   &times;
                 </button>
               </span>
-            ) : (
+            ) : openLinksInNewTab ? (
               <a href={link.url} target="_blank" rel="noopener noreferrer">{link.name}</a>
+            ) : (
+              <a href={link.url} rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); window.location.href = link.url; }}>{link.name}</a>
             )}
           </li>
         ))}
