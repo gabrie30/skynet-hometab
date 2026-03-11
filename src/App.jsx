@@ -70,7 +70,6 @@ const App = () => {
     setAppData(loaded);
     setEditConfig(null);
     setEditing(false);
-    alert('Another tab saved changes; your page has been refreshed.');
   };
 
   const handleSwitchProfile = async (profileId) => {
