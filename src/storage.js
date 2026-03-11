@@ -86,27 +86,25 @@ export function ensurePerProfileTodos(data) {
 function migrateIfNeeded(data) {
   if (!data) return null;
 
-  const withLastSavedAt = (out) => ({ ...out, lastSavedAt: out.lastSavedAt ?? 0 });
-
   if (data.profiles && Array.isArray(data.profiles)) {
     const profiles = data.profiles.map((p) => ({
       ...p,
       config: ensureOpenLinksInNewTab(ensureDropdownItems(ensureTabSets(ensureTitleImage(p.config)))),
       todos: Array.isArray(p.todos) ? p.todos : [],
     }));
-    return withLastSavedAt({ ...data, profiles });
+    return { ...data, profiles };
   }
 
   if (data.columns && data.navbar && data.dropdowns) {
     const id = nextProfileId();
-    return withLastSavedAt({
+    return {
       activeProfileId: id,
       profiles: [{
         id,
         name: 'Default',
         config: ensureOpenLinksInNewTab(ensureDropdownItems(ensureTabSets(ensureTitleImage(data)))),
       }],
-    });
+    };
   }
 
   return null;
@@ -133,31 +131,15 @@ export function loadConfig() {
   return loadRaw().then(migrateIfNeeded);
 }
 
-/**
- * Saves appData to Chrome storage. If another tab has saved more recently (by lastSavedAt),
- * does not overwrite and returns { conflict: true, loaded } so the caller can refresh.
- * Otherwise writes and returns { conflict: false }.
- */
 export function saveConfig(appData) {
   const storage = getChromeStorage();
   if (!storage) {
-    const toWrite = { ...appData, lastSavedAt: Date.now() };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(toWrite));
-    return Promise.resolve({ conflict: false });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    return Promise.resolve();
   }
 
-  return loadConfig().then((loaded) => {
-    const loadedTs = loaded?.lastSavedAt ?? 0;
-    const ourTs = appData?.lastSavedAt ?? 0;
-    if (loaded && loadedTs > ourTs) {
-      return { conflict: true, loaded };
-    }
-    const toWrite = { ...appData, lastSavedAt: Date.now() };
-    return new Promise((resolve) => {
-      storage.set({ [STORAGE_KEY]: toWrite }, () => {
-        resolve({ conflict: false });
-      });
-    });
+  return new Promise((resolve) => {
+    storage.set({ [STORAGE_KEY]: appData }, resolve);
   });
 }
 

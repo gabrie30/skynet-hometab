@@ -66,12 +66,6 @@ const App = () => {
 
   // --- Profile management ---
 
-  const applySaveConflict = (loaded) => {
-    setAppData(loaded);
-    setEditConfig(null);
-    setEditing(false);
-  };
-
   const handleSwitchProfile = async (profileId) => {
     if (editing) return;
     const targetProfile = appData.profiles.find((p) => p.id === profileId);
@@ -80,8 +74,7 @@ const App = () => {
     }
     const updated = { ...appData, activeProfileId: profileId };
     setAppData(updated);
-    const result = await saveConfig(updated);
-    if (result.conflict) { applySaveConflict(result.loaded); }
+    await saveConfig(updated);
   };
 
   const handleAddProfile = async (name) => {
@@ -93,8 +86,7 @@ const App = () => {
     };
     setAppData(updated);
     setEditConfig(newProfile.config);
-    const result = await saveConfig(updated);
-    if (result.conflict) { applySaveConflict(result.loaded); }
+    await saveConfig(updated);
   };
 
   const handleRenameProfile = async (profileId, newName) => {
@@ -103,8 +95,7 @@ const App = () => {
     );
     const updated = { ...appData, profiles };
     setAppData(updated);
-    const result = await saveConfig(updated);
-    if (result.conflict) { applySaveConflict(result.loaded); }
+    await saveConfig(updated);
   };
 
   const handleDeleteProfile = async (profileId) => {
@@ -119,8 +110,7 @@ const App = () => {
     setAppData(updated);
     setEditConfig(null);
     setEditing(false);
-    const result = await saveConfig(updated);
-    if (result.conflict) { applySaveConflict(result.loaded); }
+    await saveConfig(updated);
   };
 
   // --- Edit mode ---
@@ -132,11 +122,7 @@ const App = () => {
 
   const handleSave = async () => {
     const updated = updateActiveProfileConfig(editConfig);
-    const result = await saveConfig(updated);
-    if (result.conflict) {
-      applySaveConflict(result.loaded);
-      return;
-    }
+    await saveConfig(updated);
     setEditConfig(null);
     setEditing(false);
 
@@ -172,17 +158,15 @@ const App = () => {
     const todo = { id: `todo_${Date.now()}`, text };
     const updated = updateActiveProfileTodos([...todos, todo]);
     setAppData(updated);
-    const result = await saveConfig(updated);
-    if (result.conflict) { applySaveConflict(result.loaded); }
+    await saveConfig(updated);
   };
 
   const handleRemoveTodo = async (id) => {
     const remaining = todos.filter((t) => t.id !== id);
     const updated = updateActiveProfileTodos(remaining);
     setAppData(updated);
-    const result = await saveConfig(updated);
-    if (result.conflict) { applySaveConflict(result.loaded); }
-    else if (remaining.length === 0) setShowTodo(false);
+    await saveConfig(updated);
+    if (remaining.length === 0) setShowTodo(false);
   };
 
   const todoVisible = showTodo || todos.length > 0;
@@ -214,7 +198,7 @@ const App = () => {
         };
       }
       setAppData(normalized);
-      await saveConfig({ ...normalized, lastSavedAt: Date.now() });
+      await saveConfig(normalized);
       setEditConfig(null);
       setEditing(false);
     } catch (err) {
@@ -248,7 +232,7 @@ const App = () => {
       if (!window.confirm('Restore will replace ALL profiles with the backup. Continue?')) return;
       const restored = await restoreFromGist(token, gistId);
       setAppData(restored);
-      await saveConfig({ ...restored, lastSavedAt: Date.now() });
+      await saveConfig(restored);
       setEditConfig(null);
       setEditing(false);
     } catch (err) {
