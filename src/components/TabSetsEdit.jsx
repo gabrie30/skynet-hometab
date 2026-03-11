@@ -189,6 +189,8 @@ const TabSetsEdit = ({ tabSets, onUpdate }) => {
           key={set.id}
           className={[
             'dropdown-edit-group',
+            'edit-section',
+            'edit-section--tabset',
             dragSetId === set.id ? 'dropdown-group--dragging' : '',
             dropTargetSetId === set.id && dragSetId !== set.id ? 'column-drag-over' : '',
           ].filter(Boolean).join(' ')}
@@ -196,6 +198,7 @@ const TabSetsEdit = ({ tabSets, onUpdate }) => {
           onDrop={(e) => handleSetDrop(e, set.id)}
           onDragLeave={handleSetDragEnd}
         >
+          <span className="edit-section-badge edit-section-badge--tabset">Tab Set</span>
           <div
             className="dropdown-edit-header link_heading--draggable"
             draggable

@@ -188,12 +188,14 @@ const LinkColumn = ({
 
   return (
     <div
-      className={columnClasses}
+      className={editing ? `${columnClasses} edit-section edit-section--column` : columnClasses}
       onDragOver={editing ? handleColDragOver : undefined}
       onDrop={editing ? handleColDrop : undefined}
       onDragLeave={editing ? handleColDragEnd : undefined}
     >
       {editing ? (
+        <>
+        <span className="edit-section-badge edit-section-badge--column">Column</span>
         <div
           className="link_heading link_heading--draggable"
           draggable
@@ -215,7 +217,8 @@ const LinkColumn = ({
           >
             &times;
           </button>
-        </div>
+        </div></>
+
       ) : (
         <div className="link_heading">{column.heading}</div>
       )}

@@ -11,9 +11,11 @@ const Navbar = ({ navbar, editing, onUpdate, openLinksInNewTab = true }) => {
   const renderButton = (side, className) => {
     const btn = navbar[side];
     if (editing) {
+      const label = side === 'left' ? 'Nav Left' : 'Nav Right';
       return (
         <div className={className}>
-          <div className="nav-edit-group">
+          <div className="nav-edit-group edit-section edit-section--navbar">
+            <span className="edit-section-badge edit-section-badge--navbar">{label}</span>
             <input
               type="text"
               className="nav-edit-input"

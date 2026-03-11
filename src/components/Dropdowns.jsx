@@ -250,6 +250,8 @@ const Dropdowns = ({ dropdowns, editing, onUpdate, openLinksInNewTab = true }) =
           key={dd.id}
           className={[
             'dropdown-edit-group',
+            'edit-section',
+            'edit-section--dropdown',
             dragDropdownId === dd.id ? 'dropdown-group--dragging' : '',
             dropTargetDropdownId === dd.id && dragDropdownId !== dd.id ? 'column-drag-over' : '',
           ].filter(Boolean).join(' ')}
@@ -257,6 +259,7 @@ const Dropdowns = ({ dropdowns, editing, onUpdate, openLinksInNewTab = true }) =
           onDrop={(e) => handleDropdownDrop(e, dd.id)}
           onDragLeave={handleDropdownDragEnd}
         >
+          <span className="edit-section-badge edit-section-badge--dropdown">Dropdown</span>
           <div
             className="dropdown-edit-header link_heading--draggable"
             draggable

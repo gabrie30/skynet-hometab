@@ -385,7 +385,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #666;
+  color: #e67e22;
   margin-bottom: 6px;
 }
 
@@ -451,6 +451,85 @@ a:focus {
 a:hover,
 a:active {
   color: #c0392b;
+}
+
+/* ========================================
+   Edit mode – section badges & borders
+   ======================================== */
+
+.edit-section {
+  position: relative;
+}
+
+.edit-section-badge {
+  display: inline-block;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.edit-section--column {
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f7fbff;
+}
+
+.edit-section-badge--column {
+  background: #3498db;
+  color: #fff;
+}
+
+.edit-section--dropdown {
+  border-color: #9b59b6;
+  background: #faf5fd;
+}
+
+.edit-section-badge--dropdown {
+  background: #9b59b6;
+  color: #fff;
+}
+
+.edit-section--tabset {
+  border-color: #e67e22;
+  background: #fef9f3;
+}
+
+.edit-section-badge--tabset {
+  background: #e67e22;
+  color: #fff;
+}
+
+.edit-section--navbar {
+  border: 2px solid #1abc9c;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: rgba(26, 188, 156, 0.08);
+}
+
+.edit-section-badge--navbar {
+  background: #1abc9c;
+  color: #fff;
+}
+
+.edit-section--title {
+  border: 2px solid #e74c3c;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 0 auto;
+  max-width: 420px;
+  background: #fef5f5;
+}
+
+.edit-section-badge--title {
+  background: #e74c3c;
+  color: #fff;
 }
 
 /* ========================================
