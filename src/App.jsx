@@ -21,6 +21,9 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [showTodo, setShowTodo] = useState(false);
   const [hasGistToken, setHasGistToken] = useState(false);
+  const [osPrefersDark, setOsPrefersDark] = useState(
+    () => window.matchMedia('(prefers-color-scheme: dark)').matches,
+  );
   const appDataRef = useRef(null);
   appDataRef.current = appData;
 
@@ -33,6 +36,13 @@ const App = () => {
 
   useEffect(() => {
     loadGithubToken().then((t) => setHasGistToken(!!t));
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e) => setOsPrefersDark(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
   useEffect(() => {
@@ -54,6 +64,11 @@ const App = () => {
 
   const activeProfile = getActiveProfile(appData);
   const activeConfig = editing ? editConfig : activeProfile?.config;
+  const darkMode = activeProfile?.darkMode ?? osPrefersDark;
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   const updateActiveProfileConfig = (newConfig) => {
     const profiles = appData.profiles.map((p) =>
@@ -110,6 +125,17 @@ const App = () => {
     setAppData(updated);
     setEditConfig(null);
     setEditing(false);
+    await saveConfig(updated);
+  };
+
+  // --- Dark mode ---
+
+  const handleToggleDarkMode = async () => {
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, darkMode: !darkMode } : p,
+    );
+    const updated = { ...appData, profiles };
+    setAppData(updated);
     await saveConfig(updated);
   };
 
@@ -426,6 +452,8 @@ const App = () => {
         tabSets={activeConfig.tabSets}
         openLinksInNewTab={openLinksInNewTab}
         onToggleOpenLinksInNewTab={handleToggleOpenLinksInNewTab}
+        darkMode={darkMode}
+        onToggleDarkMode={handleToggleDarkMode}
         profileSwitcher={
           <ProfileSwitcher
             profiles={appData.profiles}

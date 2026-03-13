@@ -19,6 +19,8 @@ const Footer = ({
   tabSets,
   openLinksInNewTab,
   onToggleOpenLinksInNewTab,
+  darkMode,
+  onToggleDarkMode,
 }) => {
   if (editing) {
     return (
@@ -54,6 +56,15 @@ const Footer = ({
         ) : (
           <button className="footer-btn export-btn" onClick={onSetGistToken}>Set GitHub Token (auto-sync on Save)</button>
         )}
+        <span className="footer-divider">|</span>
+        <button
+          type="button"
+          className="footer-edit-btn"
+          onClick={onToggleDarkMode}
+          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {darkMode ? 'light mode' : 'dark mode'}
+        </button>
       </div>
     );
   }
@@ -82,6 +93,15 @@ const Footer = ({
           <TabSetSelector tabSets={tabSetList} />
         </>
       )}
+      <span className="footer-divider">|</span>
+      <button
+        type="button"
+        className="footer-edit-btn"
+        onClick={onToggleDarkMode}
+        title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+      >
+        {darkMode ? 'light mode' : 'dark mode'}
+      </button>
     </div>
   );
 };
