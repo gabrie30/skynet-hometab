@@ -346,6 +346,7 @@ const App = () => {
         editing={editing}
         onUpdate={handleNavbarUpdate}
         openLinksInNewTab={openLinksInNewTab}
+        config={activeConfig}
       />
       <Title
         imageUrl={activeConfig.titleImage}
