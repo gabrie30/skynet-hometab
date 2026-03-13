@@ -19,6 +19,8 @@ const Footer = ({
   tabSets,
   openLinksInNewTab,
   onToggleOpenLinksInNewTab,
+  darkMode,
+  onToggleDarkMode,
   searchBookmarks,
   onToggleSearchBookmarks,
 }) => {
@@ -55,6 +57,14 @@ const Footer = ({
           }
         >
           {searchBookmarks ? 'bookmarks: on' : 'bookmarks: off'}
+        </button>
+        <button
+          type="button"
+          className="footer-edit-btn"
+          onClick={onToggleDarkMode}
+          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {darkMode ? 'light mode' : 'dark mode'}
         </button>
         <span className="footer-divider">|</span>
         <button className="footer-btn export-btn" onClick={onBackup}>GitHub Export</button>
