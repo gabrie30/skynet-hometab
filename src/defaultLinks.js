@@ -13,6 +13,7 @@ export function getDefaultLinks() {
   return {
     titleImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Skynet_Terminator_logo.png/330px-Skynet_Terminator_logo.png',
     openLinksInNewTab: true,
+    searchBookmarks: true,
     columns: [
       {
         id: 'cloud',

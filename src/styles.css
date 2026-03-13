@@ -215,6 +215,11 @@ body {
   color: #fff;
 }
 
+.search-result-badge--bookmark {
+  background: #e74c3c;
+  color: #fff;
+}
+
 .search-no-results {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 13px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 
-const Navbar = ({ navbar, editing, onUpdate, openLinksInNewTab = true, config }) => {
+const Navbar = ({ navbar, editing, onUpdate, openLinksInNewTab = true, config, searchBookmarks = true }) => {
   const handleChange = (side, field, value) => {
     onUpdate({
       ...navbar,
@@ -53,7 +53,7 @@ const Navbar = ({ navbar, editing, onUpdate, openLinksInNewTab = true, config })
   return (
     <div className="navbar">
       {renderButton('left', 'nav-button-left')}
-      <SearchBar config={config} openLinksInNewTab={openLinksInNewTab} editing={editing} />
+      <SearchBar config={config} openLinksInNewTab={openLinksInNewTab} editing={editing} searchBookmarks={searchBookmarks} />
       {renderButton('right', 'nav-button-right')}
     </div>
   );

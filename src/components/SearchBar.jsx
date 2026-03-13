@@ -82,17 +82,54 @@ const CATEGORY_LABELS = {
   dropdown: 'Dropdown',
   navbar: 'Navbar',
   tabset: 'Tab Set',
+  bookmark: 'Bookmark',
 };
 
-const SearchBar = ({ config, openLinksInNewTab = true, editing }) => {
+function flattenBookmarkTree(nodes, path = []) {
+  const entries = [];
+  for (const node of nodes) {
+    const currentPath = node.title ? [...path, node.title] : path;
+    if (node.url) {
+      entries.push({
+        name: node.title || node.url,
+        url: node.url,
+        category: 'bookmark',
+        categoryName: path.join(' / ') || 'Bookmarks',
+      });
+    }
+    if (node.children) {
+      entries.push(...flattenBookmarkTree(node.children, currentPath));
+    }
+  }
+  return entries;
+}
+
+const SearchBar = ({ config, openLinksInNewTab = true, editing, searchBookmarks = true }) => {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [bookmarkEntries, setBookmarkEntries] = useState([]);
   const inputRef = useRef(null);
   const containerRef = useRef(null);
   const listRef = useRef(null);
 
-  const index = useMemo(() => buildSearchIndex(config), [config]);
+  useEffect(() => {
+    if (!searchBookmarks) {
+      setBookmarkEntries([]);
+      return;
+    }
+    if (typeof chrome !== 'undefined' && chrome.bookmarks?.getTree) {
+      chrome.bookmarks.getTree((tree) => {
+        setBookmarkEntries(flattenBookmarkTree(tree));
+      });
+    }
+  }, [searchBookmarks]);
+
+  const configIndex = useMemo(() => buildSearchIndex(config), [config]);
+  const index = useMemo(
+    () => [...configIndex, ...bookmarkEntries],
+    [configIndex, bookmarkEntries],
+  );
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
