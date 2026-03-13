@@ -58,6 +58,14 @@ const Footer = ({
         >
           {searchBookmarks ? 'bookmarks: on' : 'bookmarks: off'}
         </button>
+        <button
+          type="button"
+          className="footer-edit-btn"
+          onClick={onToggleDarkMode}
+          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {darkMode ? 'light mode' : 'dark mode'}
+        </button>
         <span className="footer-divider">|</span>
         <button className="footer-btn export-btn" onClick={onBackup}>GitHub Export</button>
         <button className="footer-btn import-btn" onClick={onRestore}>GitHub Import</button>
@@ -70,15 +78,6 @@ const Footer = ({
         ) : (
           <button className="footer-btn export-btn" onClick={onSetGistToken}>Set GitHub Token (auto-sync on Save)</button>
         )}
-        <span className="footer-divider">|</span>
-        <button
-          type="button"
-          className="footer-edit-btn"
-          onClick={onToggleDarkMode}
-          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          {darkMode ? 'light mode' : 'dark mode'}
-        </button>
       </div>
     );
   }
@@ -107,15 +106,6 @@ const Footer = ({
           <TabSetSelector tabSets={tabSetList} />
         </>
       )}
-      <span className="footer-divider">|</span>
-      <button
-        type="button"
-        className="footer-edit-btn"
-        onClick={onToggleDarkMode}
-        title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-      >
-        {darkMode ? 'light mode' : 'dark mode'}
-      </button>
     </div>
   );
 };
