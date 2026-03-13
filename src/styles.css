@@ -625,6 +625,15 @@ body {
   text-indent: 40px;
 }
 
+.dropdown-select option {
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .dropdown-select {
+  color-scheme: dark;
+}
+
 .dropdown-select:focus {
   border-color: var(--color-dropdown-focus);
   outline: none;
@@ -1054,6 +1063,15 @@ a:active {
   color: var(--color-text);
   cursor: pointer;
   min-width: 120px;
+}
+
+.footer-tabset-select option {
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .footer-tabset-select {
+  color-scheme: dark;
 }
 
 .footer-tabset-select:focus {
