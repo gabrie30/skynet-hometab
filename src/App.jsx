@@ -356,10 +356,17 @@ const App = () => {
   };
 
   const openLinksInNewTab = activeConfig?.openLinksInNewTab !== false;
+  const searchBookmarks = activeConfig?.searchBookmarks !== false;
 
   const handleToggleOpenLinksInNewTab = () => {
     if (editing) {
       setEditConfig({ ...editConfig, openLinksInNewTab: !openLinksInNewTab });
+    }
+  };
+
+  const handleToggleSearchBookmarks = () => {
+    if (editing) {
+      setEditConfig({ ...editConfig, searchBookmarks: !searchBookmarks });
     }
   };
 
@@ -372,6 +379,8 @@ const App = () => {
         editing={editing}
         onUpdate={handleNavbarUpdate}
         openLinksInNewTab={openLinksInNewTab}
+        config={activeConfig}
+        searchBookmarks={searchBookmarks}
       />
       <Title
         imageUrl={activeConfig.titleImage}
@@ -454,6 +463,8 @@ const App = () => {
         onToggleOpenLinksInNewTab={handleToggleOpenLinksInNewTab}
         darkMode={darkMode}
         onToggleDarkMode={handleToggleDarkMode}
+        searchBookmarks={searchBookmarks}
+        onToggleSearchBookmarks={handleToggleSearchBookmarks}
         profileSwitcher={
           <ProfileSwitcher
             profiles={appData.profiles}

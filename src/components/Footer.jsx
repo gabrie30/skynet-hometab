@@ -21,6 +21,8 @@ const Footer = ({
   onToggleOpenLinksInNewTab,
   darkMode,
   onToggleDarkMode,
+  searchBookmarks,
+  onToggleSearchBookmarks,
 }) => {
   if (editing) {
     return (
@@ -43,6 +45,18 @@ const Footer = ({
           }
         >
           {openLinksInNewTab ? 'new tab' : 'current tab'}
+        </button>
+        <button
+          type="button"
+          className="footer-edit-btn"
+          onClick={onToggleSearchBookmarks}
+          title={
+            searchBookmarks
+              ? 'Chrome bookmarks are included in search results. Click to exclude them.'
+              : 'Chrome bookmarks are excluded from search results. Click to include them.'
+          }
+        >
+          {searchBookmarks ? 'bookmarks: on' : 'bookmarks: off'}
         </button>
         <span className="footer-divider">|</span>
         <button className="footer-btn export-btn" onClick={onBackup}>GitHub Export</button>
