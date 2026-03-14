@@ -1169,12 +1169,14 @@ a:active {
 
 .footer-left {
   flex: 1;
+  padding-left: 16px;
 }
 
 .footer-center {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .footer-right {

@@ -1,5 +1,6 @@
 import React from 'react';
 import TabSetSelector from './TabSetSelector';
+import Weather from './Weather';
 
 const Footer = ({
   editing,
@@ -87,25 +88,31 @@ const Footer = ({
 
   return (
     <div className="footer">
-      {profileSwitcher}
-      <span className="footer-divider">|</span>
-      <button className="footer-edit-btn" onClick={onToggleEdit}>
-        update
-      </button>
-      {!todoVisible && (
-        <>
-          <span className="footer-divider">|</span>
-          <button className="footer-edit-btn" onClick={onStartTodo}>
-            todo
-          </button>
-        </>
-      )}
-      {hasTabSets && (
-        <>
-          <span className="footer-divider">|</span>
-          <TabSetSelector tabSets={tabSetList} />
-        </>
-      )}
+      <div className="footer-left" />
+      <div className="footer-center">
+        {profileSwitcher}
+        <span className="footer-divider">|</span>
+        <button className="footer-edit-btn" onClick={onToggleEdit}>
+          update
+        </button>
+        {!todoVisible && (
+          <>
+            <span className="footer-divider">|</span>
+            <button className="footer-edit-btn" onClick={onStartTodo}>
+              todo
+            </button>
+          </>
+        )}
+        {hasTabSets && (
+          <>
+            <span className="footer-divider">|</span>
+            <TabSetSelector tabSets={tabSetList} />
+          </>
+        )}
+      </div>
+      <div className="footer-right">
+        <Weather />
+      </div>
     </div>
   );
 };
