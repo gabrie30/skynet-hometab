@@ -1033,7 +1033,7 @@ a:active {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
   font-family: 'Source Sans Pro', sans-serif;
   z-index: 100;
@@ -1147,6 +1147,41 @@ a:active {
 
 .import-btn:hover {
   background: #7d3c98;
+}
+
+/* ========================================
+   Weather Widget
+   ======================================== */
+
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.weather-temp {
+  font-weight: 600;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 16px;
 }
 
 /* ========================================
