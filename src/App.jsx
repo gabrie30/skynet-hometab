@@ -1,0 +1,623 @@
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Navbar from './components/Navbar';
+import Title from './components/Title';
+import Dropdowns from './components/Dropdowns';
+import ProfileSwitcher from './components/ProfileSwitcher';
+import LinkColumn from './components/LinkColumn';
+import TodoList from './components/TodoList';
+import TabSetsEdit from './components/TabSetsEdit';
+import Footer from './components/Footer';
+import CommandPalette from './components/CommandPalette';
+import { loadOrSeedConfig, loadConfig, saveConfig, exportConfig, importConfig, nextProfileId, getEmptyConfig, saveGistId, loadGistId, saveGithubToken, loadGithubToken, ensurePerProfileTodos, ensureDropdownItems } from './storage';
+import { loadResourceSources, saveResourceSources, stripSourceSecrets } from './resourceSources';
+import { backupToGist, restoreFromGist } from './gist';
+import './styles.css';
+
+let idCounter = Date.now();
+const nextId = () => `col_${idCounter++}`;
+
+const App = () => {
+  const [appData, setAppData] = useState(null);
+  const [editConfig, setEditConfig] = useState(null);
+  const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [showTodo, setShowTodo] = useState(false);
+  const [hasGistToken, setHasGistToken] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [paletteInitialMode, setPaletteInitialMode] = useState('resources');
+  const [osPrefersDark, setOsPrefersDark] = useState(
+    () => window.matchMedia('(prefers-color-scheme: dark)').matches,
+  );
+  const appDataRef = useRef(null);
+  appDataRef.current = appData;
+
+  useEffect(() => {
+    loadOrSeedConfig().then((loaded) => {
+      setAppData(loaded);
+      setLoading(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    loadGithubToken().then((t) => setHasGistToken(!!t));
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e) => setOsPrefersDark(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState !== 'visible' || editing) return;
+      if (appDataRef.current == null) return;
+      loadConfig().then((loaded) => {
+        if (loaded) setAppData(loaded);
+      });
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, [editing]);
+
+  const getActiveProfile = (data) => {
+    if (!data) return null;
+    return data.profiles.find((p) => p.id === data.activeProfileId) || data.profiles[0];
+  };
+
+  const activeProfile = getActiveProfile(appData);
+  const activeConfig = editing ? editConfig : activeProfile?.config;
+  const darkMode = activeProfile?.darkMode ?? osPrefersDark;
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  const updateActiveProfileConfig = (newConfig) => {
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, config: newConfig } : p,
+    );
+    const updated = { ...appData, profiles };
+    setAppData(updated);
+    return updated;
+  };
+
+  // --- Profile management ---
+
+  const handleSwitchProfile = async (profileId) => {
+    if (editing) return;
+    const targetProfile = appData.profiles.find((p) => p.id === profileId);
+    if (targetProfile && (!targetProfile.todos || targetProfile.todos.length === 0)) {
+      setShowTodo(false);
+    }
+    const updated = { ...appData, activeProfileId: profileId };
+    setAppData(updated);
+    await saveConfig(updated);
+  };
+
+  const handleAddProfile = async (name) => {
+    const id = nextProfileId();
+    const newProfile = { id, name, config: getEmptyConfig(), todos: [] };
+    const updated = {
+      activeProfileId: id,
+      profiles: [...appData.profiles, newProfile],
+    };
+    setAppData(updated);
+    setEditConfig(newProfile.config);
+    await saveConfig(updated);
+  };
+
+  const handleRenameProfile = async (profileId, newName) => {
+    const profiles = appData.profiles.map((p) =>
+      p.id === profileId ? { ...p, name: newName } : p,
+    );
+    const updated = { ...appData, profiles };
+    setAppData(updated);
+    await saveConfig(updated);
+  };
+
+  const handleDeleteProfile = async (profileId) => {
+    if (appData.profiles.length <= 1) return;
+    if (!window.confirm('Delete this profile? This cannot be undone.')) return;
+
+    const profiles = appData.profiles.filter((p) => p.id !== profileId);
+    const activeProfileId = profileId === appData.activeProfileId
+      ? profiles[0].id
+      : appData.activeProfileId;
+    const updated = { activeProfileId, profiles };
+    setAppData(updated);
+    setEditConfig(null);
+    setEditing(false);
+    await saveConfig(updated);
+  };
+
+  // --- Dark mode ---
+
+  const handleToggleDarkMode = async () => {
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, darkMode: !darkMode } : p,
+    );
+    const updated = { ...appData, profiles };
+    setAppData(updated);
+    await saveConfig(updated);
+  };
+
+  // --- Edit mode ---
+
+  const handleToggleEdit = () => {
+    setEditConfig(JSON.parse(JSON.stringify(activeProfile.config)));
+    setEditing(true);
+  };
+
+  const handleSave = async () => {
+    const updated = updateActiveProfileConfig(editConfig);
+    await saveConfig(updated);
+    setEditConfig(null);
+    setEditing(false);
+
+    const token = await loadGithubToken();
+    if (token) {
+      try {
+        const existingGistId = await loadGistId();
+        const sourcesMap = await loadResourceSources();
+        const strippedSources = stripSourceSecrets(sourcesMap);
+        const { id } = await backupToGist(token, updated, existingGistId, strippedSources);
+        await saveGistId(id);
+      } catch (err) {
+        alert(`Auto-sync to Gist failed: ${err.message}`);
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    setEditConfig(null);
+    setEditing(false);
+  };
+
+  // --- Todo list (per profile) ---
+
+  const todos = Array.isArray(activeProfile?.todos) ? activeProfile.todos : [];
+
+  const updateActiveProfileTodos = (newTodos) => {
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, todos: newTodos } : p,
+    );
+    return { ...appData, profiles };
+  };
+
+  const handleAddTodo = async (text) => {
+    const todo = { id: `todo_${Date.now()}`, text };
+    const updated = updateActiveProfileTodos([...todos, todo]);
+    setAppData(updated);
+    await saveConfig(updated);
+  };
+
+  const handleEditTodo = async (id, newText) => {
+    const trimmed = newText.trim();
+    if (!trimmed) return;
+    const edited = todos.map((t) => (t.id === id ? { ...t, text: trimmed } : t));
+    const updated = updateActiveProfileTodos(edited);
+    setAppData(updated);
+    await saveConfig(updated);
+  };
+
+  const handleRemoveTodo = async (id) => {
+    const remaining = todos.filter((t) => t.id !== id);
+    const updated = updateActiveProfileTodos(remaining);
+    setAppData(updated);
+    await saveConfig(updated);
+    if (remaining.length === 0) setShowTodo(false);
+  };
+
+  const todoVisible = showTodo || todos.length > 0;
+
+  const getCurrentAppData = () => {
+    if (!editing || !editConfig) return appData;
+    const profiles = appData.profiles.map((p) =>
+      p.id === appData.activeProfileId ? { ...p, config: editConfig } : p,
+    );
+    return { ...appData, profiles };
+  };
+
+  const handleExport = async () => {
+    const sourcesMap = await loadResourceSources();
+    const strippedSources = stripSourceSecrets(sourcesMap);
+    exportConfig(getCurrentAppData(), strippedSources);
+  };
+
+  const handleImport = async () => {
+    if (!window.confirm('Import will replace ALL profiles. Continue?')) return;
+    try {
+      const imported = await importConfig();
+      const importedSources = imported._importedResourceSources;
+      delete imported._importedResourceSources;
+
+      let normalized = ensurePerProfileTodos(imported);
+      if (normalized?.profiles) {
+        normalized = {
+          ...normalized,
+          profiles: normalized.profiles.map((p) => ({
+            ...p,
+            config: ensureDropdownItems(p.config) ?? p.config,
+          })),
+        };
+      }
+      setAppData(normalized);
+      await saveConfig(normalized);
+
+      if (importedSources) {
+        await saveResourceSources(importedSources);
+      }
+
+      setEditConfig(null);
+      setEditing(false);
+    } catch (err) {
+      alert(`Import failed: ${err.message}`);
+    }
+  };
+
+  const handleBackup = async () => {
+    const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope):');
+    if (!token) return;
+    try {
+      const dataToBackup = getCurrentAppData();
+      const existingGistId = await loadGistId();
+      const sourcesMap = await loadResourceSources();
+      const strippedSources = stripSourceSecrets(sourcesMap);
+      const { id, url } = await backupToGist(token, dataToBackup, existingGistId, strippedSources);
+      await saveGistId(id);
+      alert(`Backup saved!\n${url}`);
+    } catch (err) {
+      alert(`Backup failed: ${err.message}`);
+    }
+  };
+
+  const handleRestore = async () => {
+    const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope):');
+    if (!token) return;
+    try {
+      const gistId = await loadGistId();
+      if (!gistId) {
+        alert('No backup found. Back up your config first.');
+        return;
+      }
+      if (!window.confirm('Restore will replace ALL profiles with the backup. Continue?')) return;
+      const { appData: restored, resourceSources: restoredSources } = await restoreFromGist(token, gistId);
+      setAppData(restored);
+      await saveConfig(restored);
+      if (restoredSources) {
+        await saveResourceSources(restoredSources);
+      }
+      setEditConfig(null);
+      setEditing(false);
+    } catch (err) {
+      alert(`Restore failed: ${err.message}`);
+    }
+  };
+
+  const handleSetGistToken = async () => {
+    const token = window.prompt('Enter your GitHub Personal Access Token (needs "gist" scope). It will be stored and used to auto-push config to a Gist when you click Save.');
+    if (!token) return;
+    const trimmed = token.trim();
+    if (!trimmed) return;
+    await saveGithubToken(trimmed);
+    setHasGistToken(true);
+    alert('GitHub token saved. Your config will be pushed to a Gist automatically each time you click Save.');
+  };
+
+  const handleClearGistToken = async () => {
+    if (!window.confirm('Remove saved GitHub token? Auto-sync to Gist will be disabled.')) return;
+    await saveGithubToken(null);
+    setHasGistToken(false);
+  };
+
+  // --- Column / Navbar / Dropdown handlers ---
+
+  const handleColumnUpdate = (index, updated) => {
+    const columns = [...activeConfig.columns];
+    columns[index] = updated;
+    setEditConfig({ ...editConfig, columns });
+  };
+
+  const handleColumnRemove = (index) => {
+    const columns = activeConfig.columns.filter((_, i) => i !== index);
+    setEditConfig({ ...editConfig, columns });
+  };
+
+  const handleAddColumn = () => {
+    const columns = [
+      ...activeConfig.columns,
+      { id: nextId(), heading: 'New Column', links: [] },
+    ];
+    setEditConfig({ ...editConfig, columns });
+  };
+
+  const handleColumnReorder = (sourceId, targetId) => {
+    const columns = [...activeConfig.columns];
+    const srcIdx = columns.findIndex((c) => c.id === sourceId);
+    const tgtIdx = columns.findIndex((c) => c.id === targetId);
+    if (srcIdx === -1 || tgtIdx === -1 || srcIdx === tgtIdx) return;
+    const [moved] = columns.splice(srcIdx, 1);
+    columns.splice(tgtIdx, 0, moved);
+    setEditConfig({ ...editConfig, columns });
+  };
+
+  const handleLinkMoveBetweenColumns = (srcColId, srcLinkIdx, tgtColId, tgtLinkIdx) => {
+    const columns = activeConfig.columns.map((c) => ({ ...c, links: [...c.links] }));
+    const srcCol = columns.find((c) => c.id === srcColId);
+    const tgtCol = columns.find((c) => c.id === tgtColId);
+    if (!srcCol || !tgtCol) return;
+    const [link] = srcCol.links.splice(srcLinkIdx, 1);
+    tgtCol.links.splice(tgtLinkIdx, 0, link);
+    setEditConfig({ ...editConfig, columns });
+  };
+
+  const handleUniversalDrop = (source, target) => {
+    const columns = activeConfig.columns.map((c) => ({ ...c, links: [...c.links] }));
+    const dropdowns = activeConfig.dropdowns.map((dd) => ({ ...dd, items: [...dd.items] }));
+
+    if (source.sourceType === 'column') {
+      const srcCol = columns.find((c) => c.id === source.sourceId);
+      if (srcCol) srcCol.links.splice(source.sourceIndex, 1);
+    } else if (source.sourceType === 'dropdown') {
+      const srcDd = dropdowns.find((dd) => dd.id === source.sourceId);
+      if (srcDd) srcDd.items.splice(source.sourceIndex, 1);
+    }
+
+    if (target.targetType === 'column') {
+      const tgtCol = columns.find((c) => c.id === target.targetId);
+      if (tgtCol) {
+        const link = { name: source.name, url: source.url };
+        if (source.tags?.length) link.tags = source.tags;
+        tgtCol.links.splice(target.targetIndex, 0, link);
+      }
+    } else if (target.targetType === 'dropdown') {
+      const tgtDd = dropdowns.find((dd) => dd.id === target.targetId);
+      if (tgtDd) {
+        let item;
+        if (source.sourceType === 'dropdown' && source.value !== undefined) {
+          item = source.label ? { value: source.value, label: source.label } : source.value;
+          if (source.tags?.length && typeof item === 'object') item.tags = source.tags;
+          else if (source.tags?.length) item = { value: source.value, tags: source.tags };
+        } else {
+          item = { value: source.url, label: source.name };
+          if (source.tags?.length) item.tags = source.tags;
+        }
+        tgtDd.items.splice(target.targetIndex, 0, item);
+      }
+    }
+
+    setEditConfig({ ...editConfig, columns, dropdowns });
+  };
+
+  const handleTitleImageUpdate = (titleImage) => {
+    setEditConfig({ ...editConfig, titleImage });
+  };
+
+  const handleNavbarUpdate = (navbar) => {
+    setEditConfig({ ...editConfig, navbar });
+  };
+
+  const handleDropdownsUpdate = (dropdowns) => {
+    setEditConfig({ ...editConfig, dropdowns });
+  };
+
+  const handleAddDropdown = () => {
+    const dropdowns = [
+      ...activeConfig.dropdowns,
+      { id: nextId(), heading: 'New Dropdown', urlTemplate: 'https://example.com/{part}', items: [] },
+    ];
+    setEditConfig({ ...editConfig, dropdowns });
+  };
+
+  const handleTabSetsUpdate = (tabSets) => {
+    setEditConfig({ ...editConfig, tabSets });
+  };
+
+  const handleAddTabSet = () => {
+    const tabSets = [
+      ...(activeConfig.tabSets || []),
+      { id: nextId(), name: 'New set', urls: [] },
+    ];
+    setEditConfig({ ...editConfig, tabSets });
+  };
+
+  // --- Global keyboard shortcuts ---
+
+  const handleClosePalette = useCallback(() => setPaletteOpen(false), []);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'k') {
+        e.preventDefault();
+        setPaletteInitialMode('feeds');
+        setPaletteOpen((prev) => !prev);
+        return;
+      }
+
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setPaletteInitialMode('resources');
+        setPaletteOpen((prev) => !prev);
+        return;
+      }
+
+      const tag = document.activeElement?.tagName;
+      const inInput = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+
+      if (e.key === 'Escape' && paletteOpen) {
+        e.preventDefault();
+        setPaletteOpen(false);
+        return;
+      }
+
+      if (e.key === 'Escape' && editing) {
+        e.preventDefault();
+        handleCancel();
+        return;
+      }
+
+      if (inInput) return;
+
+      if (e.key >= '1' && e.key <= '9' && !editing) {
+        const idx = parseInt(e.key, 10) - 1;
+        if (appData?.profiles?.[idx]) {
+          e.preventDefault();
+          handleSwitchProfile(appData.profiles[idx].id);
+        }
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [editing, appData, paletteOpen]);
+
+  const openLinksInNewTab = activeConfig?.openLinksInNewTab !== false;
+  const searchBookmarks = activeConfig?.searchBookmarks !== false;
+  const searchHistory = activeConfig?.searchHistory !== false;
+
+  const handleToggleOpenLinksInNewTab = () => {
+    if (editing) {
+      setEditConfig({ ...editConfig, openLinksInNewTab: !openLinksInNewTab });
+    }
+  };
+
+  const handleToggleSearchBookmarks = () => {
+    if (editing) {
+      setEditConfig({ ...editConfig, searchBookmarks: !searchBookmarks });
+    }
+  };
+
+  const handleToggleSearchHistory = () => {
+    if (editing) {
+      setEditConfig({ ...editConfig, searchHistory: !searchHistory });
+    }
+  };
+
+  if (loading || !activeConfig) return null;
+
+  return (
+    <div>
+      <Navbar
+        navbar={activeConfig.navbar}
+        editing={editing}
+        onUpdate={handleNavbarUpdate}
+        openLinksInNewTab={openLinksInNewTab}
+        config={activeConfig}
+        searchBookmarks={searchBookmarks}
+        searchHistory={searchHistory}
+      />
+      <Title
+        imageUrl={activeConfig.titleImage}
+        editing={editing}
+        onUpdate={handleTitleImageUpdate}
+      />
+      <Dropdowns
+        dropdowns={activeConfig.dropdowns}
+        editing={editing}
+        onUpdate={handleDropdownsUpdate}
+        onUniversalDrop={handleUniversalDrop}
+        openLinksInNewTab={openLinksInNewTab}
+      />
+      {editing && (
+        <div className="add-dropdown-row">
+          <button className="add-column-btn" onClick={handleAddDropdown}>
+            + Add Dropdown
+          </button>
+        </div>
+      )}
+      {editing && (activeConfig.tabSets || []).length > 0 && (
+        <div className="tabset-edit-wrapper">
+          <TabSetsEdit
+            tabSets={activeConfig.tabSets}
+            onUpdate={handleTabSetsUpdate}
+          />
+        </div>
+      )}
+      {editing && (
+        <div className="add-dropdown-row">
+          <button className="add-column-btn" onClick={handleAddTabSet}>
+            + Add Tab Set
+          </button>
+        </div>
+      )}
+      <div className="link_group">
+        {activeConfig.columns.map((col, index) => (
+          <LinkColumn
+            key={col.id}
+            column={col}
+            editing={editing}
+            onUpdate={(updated) => handleColumnUpdate(index, updated)}
+            onRemove={() => handleColumnRemove(index)}
+            onColumnDrop={handleColumnReorder}
+            onLinkDropFromOther={handleLinkMoveBetweenColumns}
+            onUniversalDrop={handleUniversalDrop}
+            openLinksInNewTab={openLinksInNewTab}
+          />
+        ))}
+        {editing && (
+          <div className="monitoring_links add-column-placeholder">
+            <button className="add-column-btn" onClick={handleAddColumn}>
+              + Add Column
+            </button>
+          </div>
+        )}
+      </div>
+      {todoVisible && (
+        <TodoList
+          todos={todos}
+          onAdd={handleAddTodo}
+          onEdit={handleEditTodo}
+          onRemove={handleRemoveTodo}
+          onMinimize={() => setShowTodo(false)}
+        />
+      )}
+      <CommandPalette
+        profileId={appData?.activeProfileId}
+        open={paletteOpen}
+        onClose={handleClosePalette}
+        initialMode={paletteInitialMode}
+        config={activeConfig}
+        searchBookmarks={searchBookmarks}
+        searchHistory={searchHistory}
+      />
+      <Footer
+        editing={editing}
+        onToggleEdit={handleToggleEdit}
+        onSave={handleSave}
+        onCancel={handleCancel}
+        onExport={handleExport}
+        onImport={handleImport}
+        onBackup={handleBackup}
+        onRestore={handleRestore}
+        hasGistToken={hasGistToken}
+        onSetGistToken={handleSetGistToken}
+        onClearGistToken={handleClearGistToken}
+        todoVisible={todoVisible}
+        onStartTodo={() => setShowTodo(true)}
+        tabSets={activeConfig.tabSets}
+        openLinksInNewTab={openLinksInNewTab}
+        onToggleOpenLinksInNewTab={handleToggleOpenLinksInNewTab}
+        darkMode={darkMode}
+        onToggleDarkMode={handleToggleDarkMode}
+        searchBookmarks={searchBookmarks}
+        onToggleSearchBookmarks={handleToggleSearchBookmarks}
+        searchHistory={searchHistory}
+        onToggleSearchHistory={handleToggleSearchHistory}
+        profileSwitcher={
+          <ProfileSwitcher
+            profiles={appData.profiles}
+            activeProfileId={appData.activeProfileId}
+            editing={editing}
+            onSwitch={handleSwitchProfile}
+            onAdd={handleAddProfile}
+            onRename={handleRenameProfile}
+            onDelete={handleDeleteProfile}
+          />
+        }
+      />
+    </div>
+  );
+};
+
+export default App;

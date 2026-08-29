@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Skynet",
+  "version": "2.1",
+  "description": "Custom new tab page with editable link groups and Cmd+K resource palette",
+  "chrome_url_overrides": {
+    "newtab": "dist/index.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "bookmarks",
+    "history",
+    "sessions"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://*.github.com/*"
+  ],
+  "icons": {
+    "128": "images/skynet2.png"
+  }
+}
