@@ -2,7 +2,7 @@
 
 Chrome extension that replaces your new tab page with a customizable dashboard: link columns, dropdown menus, navbar shortcuts, a quick search bar, a Cmd+K command palette that searches your bookmarks, history, and external sources (GitHub repos, JSON APIs, RSS feeds), per-profile todo lists, tab sets, and optional config backup to a GitHub Gist.
 
-![Default page](https://private-user-images.githubusercontent.com/1512282/643132404-86d204fc-6991-4d9b-8d03-ae798ed8afed.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODgwMTY0MjksIm5iZiI6MTc4ODAxNjEyOSwicGF0aCI6Ii8xNTEyMjgyLzY0MzEzMjQwNC04NmQyMDRmYy02OTkxLTRkOWItOGQwMy1hZTc5OGVkOGFmZWQucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI2MDgyOSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNjA4MjlUMTUwODQ5WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9OTY3MzNlMjllMmU0ODI2ZThiMjJlMzYxYjFmYmE5MWVlNGM2NWE4OTRmYzRlYWY2ZDQzYTkxN2ZiZjRmZWNmZSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmcmVzcG9uc2UtY29udGVudC10eXBlPWltYWdlJTJGcG5nIn0.OlVD_6LgyUDFIEPPC04vI-pZWfjSGm-lY1BMTMwtHuQ)
+![Default page](https://github.com/user-attachments/assets/86d204fc-6991-4d9b-8d03-ae798ed8afed)
 
 ## Installing from source
 
@@ -86,7 +86,7 @@ Click **update** in the footer to enter edit mode. From there you can:
 - **Dark mode**: the **dark mode** / **light mode** toggle sets the theme per profile (takes effect immediately). Profiles that never set it follow your OS theme
 - **Save** / **Cancel**: commit or discard your changes (Esc also cancels)
 
-![Customize your page](https://private-user-images.githubusercontent.com/1512282/643132498-3508707d-495c-4f62-beaa-72025215dcbd.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODgwMTY1MTUsIm5iZiI6MTc4ODAxNjIxNSwicGF0aCI6Ii8xNTEyMjgyLzY0MzEzMjQ5OC0zNTA4NzA3ZC00OTVjLTRmNjItYmVhYS03MjAyNTIxNWRjYmQucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI2MDgyOSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNjA4MjlUMTUxMDE1WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MmMzNTM4ZTNlZGEwOGQ3MWFjNGJjYmZmNzE0MjJkMWEwZDA1MmZjNjhkNDcxMTlkMTAwZWNiZTA0NTBlNGM1YSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmcmVzcG9uc2UtY29udGVudC10eXBlPWltYWdlJTJGcG5nIn0.pzzisbVByqcjXZ3jbHwEuaoKGRhk9W_VxYd5ZyIE9Xk)
+![Customize your page](https://github.com/user-attachments/assets/3508707d-495c-4f62-beaa-72025215dcbd)
 
 ## Dropdowns
 
